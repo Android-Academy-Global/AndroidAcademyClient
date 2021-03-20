@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Android Academy</string>
-    <string name="title_videos">Videos</string>
-    <string name="title_news">News</string>
-    <string name="title_profile">Profile</string>
+  <string name="app_name">Android Academy</string>
+  <string name="title_videos">Videos</string>
+  <string name="title_news">News</string>
+  <string name="title_profile">Profile</string>
 </resources>
