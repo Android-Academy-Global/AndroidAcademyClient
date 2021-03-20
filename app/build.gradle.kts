@@ -3,6 +3,8 @@ plugins {
   id("kotlin-android")
   id("kotlin-android-extensions")
   id("kotlin-kapt")
+  id("dagger.hilt.android.plugin")
+  id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -53,7 +55,8 @@ dependencies {
   implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
 
   //di
-  implementation("androidx.hilt:hilt-navigation-compose:1.0.0-beta01")
+  kapt("com.google.dagger:hilt-compiler:2.29-alpha")
+  implementation("com.google.dagger:hilt-android:2.29-alpha")
 
   //concurrency
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
