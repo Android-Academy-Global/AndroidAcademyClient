@@ -5,21 +5,21 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
-  <fragment
-      android:id="@+id/navigation_home"
-      android:name="com.academy.android.ui.videos.VideosFragment"
-      android:label="@string/title_videos"
-      tools:layout="@layout/fragment_videos" />
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.academy.android.ui.videos.VideosFragment"
+        android:label="@string/title_videos"
+        tools:layout="@layout/fragment_videos" />
 
-  <fragment
-      android:id="@+id/navigation_dashboard"
-      android:name="com.academy.android.ui.news.NewsFragment"
-      android:label="@string/title_news"
-      tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.academy.android.ui.news.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" />
 
-  <fragment
-      android:id="@+id/navigation_notifications"
-      android:name="com.academy.android.ui.profile.ProfileFragment"
-      android:label="@string/title_profile"
-      tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.academy.android.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
