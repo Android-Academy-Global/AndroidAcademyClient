@@ -1,37 +1,32 @@
 package com.academy.android.ui.news
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.academy.android.R
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import com.academy.android.databinding.FragmentNewsBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
-class NewsFragment : Fragment() {
+@AndroidEntryPoint
+class NewsFragment : Fragment(R.layout.fragment_news) {
 
-  private var newsViewModel: NewsViewModel? = null
+    private val newsViewModel: NewsViewModel by viewModels()
+    private val vb by viewBinding(FragmentNewsBinding::bind)
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View? {
-    newsViewModel =
-      ViewModelProvider(this).get(NewsViewModel::class.java)
-    val root = inflater.inflate(R.layout.fragment_news, container, false)
-    val textView: TextView = root.findViewById(R.id.text_news)
-
-    CoroutineScope(Dispatchers.IO).launch {
-      newsViewModel?.text?.collect {
-        textView.text = it
-      }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupViews()
     }
-    return root
-  }
+
+    private fun setupViews() {
+        lifecycleScope.launchWhenResumed {
+            newsViewModel.text.collectLatest {
+                vb.textNews.text = it
+            }
+        }
+    }
 }

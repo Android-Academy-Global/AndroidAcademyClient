@@ -1,38 +1,32 @@
 package com.academy.android.ui.profile
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.academy.android.R
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import com.academy.android.databinding.FragmentProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
-class ProfileFragment : Fragment() {
+@AndroidEntryPoint
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
-  private var notificationsViewModel: ProfileViewModel? = null
+    private val notificationsViewModel: ProfileViewModel by viewModels()
+    private val vb by viewBinding(FragmentProfileBinding::bind)
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View? {
-    notificationsViewModel =
-      ViewModelProvider(this).get(ProfileViewModel::class.java)
-    val root = inflater.inflate(R.layout.fragment_profile, container, false)
-    val textView: TextView = root.findViewById(R.id.text_profile)
-
-    CoroutineScope(Dispatchers.IO).launch {
-      notificationsViewModel?.text?.collect {
-        textView.text = it
-
-      }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupViews()
     }
-    return root
-  }
+
+    private fun setupViews() {
+        lifecycleScope.launchWhenResumed {
+            notificationsViewModel.text.collectLatest {
+                vb.textProfile.text = it
+            }
+        }
+    }
 }

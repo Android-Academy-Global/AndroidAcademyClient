@@ -1,37 +1,32 @@
 package com.academy.android.ui.videos
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.academy.android.R
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import com.academy.android.databinding.FragmentVideosBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
-class VideosFragment : Fragment() {
+@AndroidEntryPoint
+class VideosFragment : Fragment(R.layout.fragment_videos) {
 
-    private var homeViewModel: VideosViewModel? = null
+    private val homeViewModel: VideosViewModel by viewModels()
+    private val vb by viewBinding(FragmentVideosBinding::bind)
 
-    override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
-    ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(VideosViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_videos, container, false)
-        val textView: TextView = root.findViewById(R.id.text_videos)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupViews()
+    }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            homeViewModel?.text?.collect {
-                textView.text = it
+    private fun setupViews() {
+        lifecycleScope.launchWhenResumed {
+            homeViewModel.text.collectLatest {
+                vb.textVideos.text = it
             }
         }
-        return root
     }
 }
