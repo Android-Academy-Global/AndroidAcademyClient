@@ -11,6 +11,6 @@ class NewsViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-  private val _text = MutableStateFlow("This is news Fragment")
-  val text: StateFlow<String> = _text
+    private val _text = MutableStateFlow("This is news Fragment")
+    val text: StateFlow<String> = _text
 }

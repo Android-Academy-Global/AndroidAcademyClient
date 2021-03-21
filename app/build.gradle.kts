@@ -108,7 +108,7 @@ dependencies {
     androidTestImplementation("androidx.work:work-testing:$workVersion")
 
     // ViewBindingPropertyDelegate
-    implementation ("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.4")
+    implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.4")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
