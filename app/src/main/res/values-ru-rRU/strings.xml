@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Academy</string>
+    <string name="title_videos">Видео</string>
+    <string name="title_news">Новости</string>
+    <string name="title_profile">Профиль</string>
+</resources>
