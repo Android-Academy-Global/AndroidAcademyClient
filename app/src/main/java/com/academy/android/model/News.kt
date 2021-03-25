@@ -7,5 +7,6 @@ data class News(
     val text: String = "",
     val link: String = "",
     val picture: String = "",
-    val date: Date = Date()
+    val date: Date = Date(),
+    val chatId: Long = id,
 )
