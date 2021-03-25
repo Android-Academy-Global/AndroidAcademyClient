@@ -4,4 +4,6 @@
     <string name="title_videos">Видео</string>
     <string name="title_news">Новости</string>
     <string name="title_profile">Профиль</string>
+    <string name="news__tab_title_featured">Рекомендуемые</string>
+    <string name="news__tab_title_passed">Прошедшие</string>
 </resources>
