@@ -27,11 +27,7 @@ class NewsRepository @Inject constructor(
 
 
 
-    private fun getOldDate(): Date {
-        val c = Calendar.getInstance()
-        c.set(2021, 2, 20)
-        return c.time
-    }
+    private fun getOldDate(): Date = Date()
 
     private fun getFutureDate(): Date {
         val c = Calendar.getInstance()
