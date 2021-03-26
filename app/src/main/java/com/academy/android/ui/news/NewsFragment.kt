@@ -83,6 +83,12 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
                         icLike.isChecked = viewModel.handleLike(itemData.id, !icLike.isChecked)
                     }
 
+                    lifecycleScope.launchWhenResumed {
+                        viewModel.getLikesCount(itemData.chatId).collectLatest {
+                            tvLikes.text = it.toString()
+                        }
+                    }
+
                     icChat.setOnClickListener {
                         Toast.makeText(requireContext(), "Chat is clicked", Toast.LENGTH_SHORT)
                             .show()

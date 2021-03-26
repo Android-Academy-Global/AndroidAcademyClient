@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/spacing_8"
     android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="@dimen/spacing_8"
     app:cardCornerRadius="@dimen/news__card_corner_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,20 +28,20 @@
 
         <TextView
             android:id="@+id/tv_text"
+            style="@style/Body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_16"
             app:layout_constraintEnd_toEndOf="@+id/gl_end"
             app:layout_constraintStart_toStartOf="@+id/gl_start"
             app:layout_constraintTop_toTopOf="parent"
-            style="@style/Body"
             tools:text="@tools:sample/lorem" />
 
         <TextView
             android:id="@+id/tv_link"
+            style="@style/Body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/Body"
             android:autoLink="all"
             android:linksClickable="true"
             app:layout_constraintEnd_toEndOf="@+id/gl_end"
@@ -70,6 +70,17 @@
             app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
             app:layout_constraintStart_toStartOf="@+id/gl_start" />
 
+        <TextView
+            android:id="@+id/tv_likes"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_chat"
+            app:layout_constraintStart_toEndOf="@+id/ic_like"
+            app:layout_constraintTop_toTopOf="@+id/ic_chat"
+            tools:text="351" />
+
         <ImageView
             android:id="@+id/ic_chat"
             android:layout_width="wrap_content"
@@ -77,14 +88,14 @@
             android:layout_marginStart="@dimen/spacing_24"
             android:src="@drawable/ic_discuss"
             app:layout_constraintBottom_toTopOf="@+id/gl_bottom"
-            app:layout_constraintStart_toEndOf="@id/ic_like" />
+            app:layout_constraintStart_toEndOf="@id/tv_likes" />
 
         <TextView
             android:id="@+id/tv_chat_messages"
+            style="@style/Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_8"
-            style="@style/Body"
             app:layout_constraintBottom_toBottomOf="@+id/ic_chat"
             app:layout_constraintStart_toEndOf="@+id/ic_chat"
             app:layout_constraintTop_toTopOf="@+id/ic_chat"

@@ -1,8 +1,7 @@
 package com.academy.android.data.repositories
 
 import com.academy.android.model.News
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.*
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -16,16 +15,39 @@ class NewsRepository @Inject constructor(
 
     private val likedNews = mutableSetOf<Long>()
 
+    private val likesCountState = MutableStateFlow<Map<Long, Int>>(provideMokkLikes())
+
+
     fun updateLiked(id: Long, isLiked: Boolean): Boolean {
-        if (isLiked) likedNews.add(id)
-        else likedNews.remove(id)
+        if (isLiked) {
+            likedNews.add(id)
+            increaseLikesCountForId(id)
+        } else {
+            likedNews.remove(id)
+            decreaseLikesCountForId(id)
+        }
         return isLiked
     }
 
     fun getIsLikedState(id: Long): Boolean =
         id in likedNews
 
+    fun getLikesCountForId(chatId: Long): Flow<Int> =
+        likesCountState.filter { it.containsKey(chatId) }.map { it[chatId] ?: 0 }
 
+    private fun increaseLikesCountForId(id: Long) {
+        val likesCount = likesCountState.value.toMutableMap()
+        val currentValue = likesCount[id] ?: 0
+        likesCount[id] = currentValue + 1
+        likesCountState.value = likesCount
+    }
+
+    private fun decreaseLikesCountForId(id: Long) {
+        val likesCount = likesCountState.value.toMutableMap()
+        val currentValue = likesCount[id] ?: 0
+        likesCount[id] = if (currentValue > 0) currentValue - 1 else currentValue
+        likesCountState.value = likesCount
+    }
 
     private fun getOldDate(): Date = Date()
 
@@ -107,4 +129,11 @@ class NewsRepository @Inject constructor(
             date = getOldDate()
         ),
     )
+
+    private fun provideMokkLikes(): Map<Long, Int> =
+        mutableMapOf<Long, Int>().apply {
+            (1L..8L).forEach { i ->
+                put(i, (10..50).random())
+            }
+        }
 }
