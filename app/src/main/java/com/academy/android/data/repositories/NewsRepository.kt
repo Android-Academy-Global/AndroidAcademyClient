@@ -6,19 +6,26 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+interface NewsRepositorySource{
+    val newsList: StateFlow<List<News>>
+    fun updateLiked(id: Long, isLiked: Boolean): Boolean
+    fun getIsLikedState(id: Long): Boolean
+    fun getLikesCountForId(chatId: Long): Flow<Int>
+}
+
+
 class NewsRepository @Inject constructor(
 
-) {
+):NewsRepositorySource {
     private val _newsList = MutableStateFlow<List<News>>(provideMokkNews())
-    val newsList: StateFlow<List<News>> = _newsList
+   override val newsList: StateFlow<List<News>> = _newsList
 
     private val likedNews = mutableSetOf<Long>()
 
     private val likesCountState = MutableStateFlow<Map<Long, Int>>(provideMokkLikes())
 
 
-    fun updateLiked(id: Long, isLiked: Boolean): Boolean {
+    override fun updateLiked(id: Long, isLiked: Boolean): Boolean {
         if (isLiked) {
             likedNews.add(id)
             increaseLikesCountForId(id)
@@ -29,10 +36,10 @@ class NewsRepository @Inject constructor(
         return isLiked
     }
 
-    fun getIsLikedState(id: Long): Boolean =
+    override  fun getIsLikedState(id: Long): Boolean =
         id in likedNews
 
-    fun getLikesCountForId(chatId: Long): Flow<Int> =
+    override fun getLikesCountForId(chatId: Long): Flow<Int> =
         likesCountState.filter { it.containsKey(chatId) }.map { it[chatId] ?: 0 }
 
     private fun increaseLikesCountForId(id: Long) {

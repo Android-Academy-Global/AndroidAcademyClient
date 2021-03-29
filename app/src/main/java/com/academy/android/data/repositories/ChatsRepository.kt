@@ -9,19 +9,22 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+
+interface ChatsRepositorySource {
+    fun getMessagesCountForId(chatId: Long): Flow<Int>
+}
+
 class ChatsRepository @Inject constructor(
 
-) {
+) : ChatsRepositorySource {
     init {
         generateMessagesCount()
     }
 
     private val messagesCountState = MutableStateFlow<Map<Long, Int>>(emptyMap())
 
-    fun getMessagesCountForId(chatId: Long): Flow<Int> =
+    override fun getMessagesCountForId(chatId: Long): Flow<Int> =
         messagesCountState.filter { it.containsKey(chatId) }.map { it[chatId] ?: 0 }
 
     private fun generateMessagesCount() {

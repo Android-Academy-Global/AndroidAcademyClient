@@ -1,10 +1,10 @@
 package com.academy.android.model.interactors
 
-import com.academy.android.data.repositories.NewsRepository
+import com.academy.android.data.repositories.NewsRepositorySource
 import javax.inject.Inject
 
 class NewsLikesInteractor @Inject constructor(
-    private val newsRepository: NewsRepository
+    private val newsRepository: NewsRepositorySource
 ) {
     fun getIsLikedForNewsId(id: Long): Boolean =
         newsRepository.getIsLikedState(id)
