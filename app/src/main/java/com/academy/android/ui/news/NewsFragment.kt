@@ -48,8 +48,14 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
         vb.tabLayout.apply {
             background = ResourcesCompat.getDrawable(resources, R.color.transparent, null)
 
-            addTab(newTab().apply { text = resources.getString(R.string.news__tab_title_featured) })
-            addTab(newTab().apply { text = resources.getString(R.string.news__tab_title_passed) })
+            addTab(
+                newTab().apply { text = resources.getString(R.string.news__tab_title_featured) },
+                viewModel.getIsFilterStateNew()
+            )
+            addTab(
+                newTab().apply { text = resources.getString(R.string.news__tab_title_passed) },
+                !viewModel.getIsFilterStateNew(),
+            )
 
             addOnTabSelectedListener(object :
                 TabLayout.OnTabSelectedListener {

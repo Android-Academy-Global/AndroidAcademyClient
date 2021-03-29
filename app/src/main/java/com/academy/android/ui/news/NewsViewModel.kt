@@ -50,4 +50,6 @@ class NewsViewModel @Inject constructor(
     fun applyFilterOld() {
         filterState.value = false
     }
+
+    fun getIsFilterStateNew() = filterState.value
 }
