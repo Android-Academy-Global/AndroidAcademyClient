@@ -9,10 +9,10 @@ import javax.inject.Inject
 class GetFilteredVideosUseCase @Inject constructor(
     private val videosRepository: VideosRepositorySource
 ) {
-    operator fun invoke(city: String = "",
-                        level: String = "",
-                        date: String = ""): Flow<List<Videos>> =
+    operator fun invoke(city: String,
+                        level: String,
+                        year: String): Flow<List<Videos>> =
         videosRepository.videosList.map { list ->
-            list.filter { it.city == city && it.level == level && it.date == date }
+            list.filter { it.city == city && it.level == level && it.year == year }
         }
 }

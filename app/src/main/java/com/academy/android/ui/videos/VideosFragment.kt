@@ -47,14 +47,19 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
     }
 
     private fun setupFilterView() {
-        val ciytiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, cities)
-        vb.cityDropdown.setAdapter(ciytiesAdapter)
+        val citiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, cities)
+        vb.cityDropdown.setAdapter(citiesAdapter)
+        vb.cityDropdown.setText(cities[0], false)
 
         val levelsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, levels)
         vb.levelDropdown.setAdapter(levelsAdapter)
+        vb.levelDropdown.setText(levels[0], false)
 
         val yearsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, years)
         vb.yearDropdown.setAdapter(yearsAdapter)
+        vb.yearDropdown.setText(years[0], false)
+
+        //TODO("Add on select change listener to update RV")
     }
 
     private fun setupRecyclerViewAdapter() =
