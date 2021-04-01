@@ -42,7 +42,8 @@
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/city_dropdown"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +61,8 @@
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/level_dropdown"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +80,8 @@
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/year_dropdown"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
