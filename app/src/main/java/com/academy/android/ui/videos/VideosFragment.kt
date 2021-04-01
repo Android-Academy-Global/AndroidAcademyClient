@@ -25,7 +25,7 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
     private fun setupViews() {
         lifecycleScope.launchWhenResumed {
             homeViewModel.text.collectLatest {
-                vb.textVideos.text = it
+                //vb.textVideos.text = it
             }
         }
     }
