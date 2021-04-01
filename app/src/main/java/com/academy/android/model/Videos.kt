@@ -6,5 +6,6 @@ data class Videos(
     val date: String = "",
     val picture: String = "",
     val city: String = "",
-    val level: String = ""
+    val level: String = "",
+    val year: String = ""
 )

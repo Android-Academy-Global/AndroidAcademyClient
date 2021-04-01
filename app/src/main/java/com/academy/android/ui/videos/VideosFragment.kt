@@ -24,7 +24,7 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
 
     val cities = listOf("Moscow", "Minsk", "Tel-Aviv")
     val levels = listOf("Fundamentals", "Advanced")
-    val years = listOf("2019/2020", "2020/2021")
+    val years = listOf("2019-2020", "2020-2021")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

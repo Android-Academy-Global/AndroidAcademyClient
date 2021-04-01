@@ -9,7 +9,8 @@ data class VideosItemData(
     val date: String = "",
     val picture: String = "",
     val city: String = "",
-    val level: String = ""
+    val level: String = "",
+    val year: String = ""
 ) : RvItemData
 
 fun Videos.toVideosItemData() = VideosItemData(
@@ -18,5 +19,6 @@ fun Videos.toVideosItemData() = VideosItemData(
     date = date,
     picture = picture,
     city = city,
-    level = level
+    level = level,
+    year = year
 )
