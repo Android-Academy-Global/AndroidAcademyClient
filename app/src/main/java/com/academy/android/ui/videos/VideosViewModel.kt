@@ -13,10 +13,18 @@ class VideosViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val filterStateFlow = MutableStateFlow(hashMapOf<String, String>())
+    private val filterChangedStateFlow = MutableStateFlow(false)
     fun applyFilter(filterParameters: HashMap<String, String>) {
         filterStateFlow.value = filterParameters
+        filterChangedStateFlow.value = !filterChangedStateFlow.value
     }
 
     val videosList: Flow<List<VideosItemData>> =
-            getFilteredVideosUseCase(filterStateFlow).flowOn(Dispatchers.IO).map { it.map {it.toVideosItemData() }}
+        combine(
+            getFilteredVideosUseCase(filterStateFlow).flowOn(Dispatchers.IO),
+            filterStateFlow,
+            filterChangedStateFlow
+        ) { filteredVideosUseCase, _, _ ->
+            filteredVideosUseCase.map { it.toVideosItemData() }
+        }
 }

@@ -13,15 +13,9 @@ class GetFilteredVideosUseCase @Inject constructor(
     operator fun invoke(filterParameters: StateFlow<HashMap<String, String>>): Flow<List<Videos>> =
         videosRepository.videosList.map { list ->
             list.filter {
-                if (!filterParameters.value["city"].isNullOrEmpty()) {
-                    it.city == filterParameters.value["city"]
-                } else true &&
-                        if (!filterParameters.value["level"].isNullOrEmpty()) {
-                            it.level == filterParameters.value["level"]
-                        } else true &&
-                                if (!filterParameters.value["year"].isNullOrEmpty()) {
-                                    it.year == filterParameters.value["year"]
-                                } else true
+                it.city == filterParameters.value["city"] &&
+                        it.level == filterParameters.value["level"] &&
+                        it.year == filterParameters.value["year"]
             }
         }
 }
