@@ -1,8 +1,10 @@
 package com.academy.android.ui.videos
 
 import android.os.Bundle
+import android.view.MotionEvent.ACTION_UP
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -51,32 +53,33 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
         viewModel.applyFilter(filterState)
         val citiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, cities)
         vb.cityDropdown.setAdapter(citiesAdapter)
-        vb.cityDropdown.setOnClickListener {
+        vb.cityDropdown.setOnItemClickListener { _, _, _, _ ->
             filterState["city"] = vb.cityDropdown.text.toString()
             viewModel.applyFilter(filterState)
+            Toast.makeText(requireContext(), vb.cityDropdown.text.toString(), Toast.LENGTH_LONG)
+                .show()
         }
-
         vb.cityDropdown.setText(filterState["city"], false)
 
         val levelsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, levels)
         vb.levelDropdown.setAdapter(levelsAdapter)
-        vb.levelDropdown.setOnClickListener {
-            vb.levelDropdown.text.toString()
+        vb.levelDropdown.setOnItemClickListener { _, _, _, _ ->
+            filterState["level"] = vb.levelDropdown.text.toString()
             viewModel.applyFilter(filterState)
+            Toast.makeText(requireContext(), vb.levelDropdown.text.toString(), Toast.LENGTH_LONG).show()
         }
 
         vb.levelDropdown.setText(filterState["level"], false)
 
         val yearAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, years)
         vb.yearDropdown.setAdapter(yearAdapter)
-        vb.yearDropdown.setOnClickListener {
-            vb.yearDropdown.text.toString()
+        vb.yearDropdown.setOnItemClickListener { _, _, _, _ ->
+            filterState["year"] = vb.yearDropdown.text.toString()
             viewModel.applyFilter(filterState)
+            Toast.makeText(requireContext(), vb.yearDropdown.text.toString(), Toast.LENGTH_LONG).show()
         }
 
         vb.yearDropdown.setText(filterState["year"], false)
-
-        //TODO fix setOnClickListener, now it triggers only on dropdown meny open not on item select
     }
 
     private fun setupRecyclerViewAdapter() =
