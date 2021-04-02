@@ -3,16 +3,25 @@ package com.academy.android.model.interactors
 import com.academy.android.data.repositories.VideosRepositorySource
 import com.academy.android.model.Videos
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetFilteredVideosUseCase @Inject constructor(
     private val videosRepository: VideosRepositorySource
 ) {
-    operator fun invoke(city: String,
-                        level: String,
-                        year: String): Flow<List<Videos>> =
+    operator fun invoke(filterParameters: StateFlow<HashMap<String, String>>): Flow<List<Videos>> =
         videosRepository.videosList.map { list ->
-            list.filter { it.city == city && it.level == level && it.year == year }
+            list.filter {
+                if (!filterParameters.value["city"].isNullOrEmpty()) {
+                    it.city == filterParameters.value["city"]
+                } else true &&
+                        if (!filterParameters.value["level"].isNullOrEmpty()) {
+                            it.level == filterParameters.value["level"]
+                        } else true &&
+                                if (!filterParameters.value["year"].isNullOrEmpty()) {
+                                    it.year == filterParameters.value["year"]
+                                } else true
+            }
         }
 }

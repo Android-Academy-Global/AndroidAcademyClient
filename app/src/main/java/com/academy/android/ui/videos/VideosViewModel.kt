@@ -11,6 +11,12 @@ import javax.inject.Inject
 class VideosViewModel @Inject constructor(
     getFilteredVideosUseCase: GetFilteredVideosUseCase,
 ) : ViewModel() {
-    //TODO("Pass filter parameters to use case")
-    val videosList: Flow<List<VideosItemData>> = getFilteredVideosUseCase("Moscow","Fundamentals","2020-2021").flowOn(Dispatchers.IO).map { it.map {it.toVideosItemData()} }
+
+    private val filterStateFlow = MutableStateFlow(hashMapOf<String, String>())
+    fun applyFilter(filterParameters: HashMap<String, String>) {
+        filterStateFlow.value = filterParameters
+    }
+
+    val videosList: Flow<List<VideosItemData>> =
+            getFilteredVideosUseCase(filterStateFlow).flowOn(Dispatchers.IO).map { it.map {it.toVideosItemData() }}
 }

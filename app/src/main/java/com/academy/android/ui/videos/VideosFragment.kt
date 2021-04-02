@@ -25,6 +25,7 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
     val cities = listOf("Moscow", "Minsk", "Tel-Aviv")
     val levels = listOf("Fundamentals", "Advanced")
     val years = listOf("2019-2020", "2020-2021")
+    var filterState = hashMapOf("city" to "Moscow", "level" to "Fundamentals", "year" to "2020-2021")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,19 +48,35 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
     }
 
     private fun setupFilterView() {
+        viewModel.applyFilter(filterState)
         val citiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, cities)
         vb.cityDropdown.setAdapter(citiesAdapter)
-        vb.cityDropdown.setText(cities[0], false)
+        vb.cityDropdown.setOnClickListener {
+            filterState["city"] = vb.cityDropdown.text.toString()
+            viewModel.applyFilter(filterState)
+        }
+
+        vb.cityDropdown.setText(filterState["city"], false)
 
         val levelsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, levels)
         vb.levelDropdown.setAdapter(levelsAdapter)
-        vb.levelDropdown.setText(levels[0], false)
+        vb.levelDropdown.setOnClickListener {
+            vb.levelDropdown.text.toString()
+            viewModel.applyFilter(filterState)
+        }
 
-        val yearsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, years)
-        vb.yearDropdown.setAdapter(yearsAdapter)
-        vb.yearDropdown.setText(years[0], false)
+        vb.levelDropdown.setText(filterState["level"], false)
 
-        //TODO("Add on select change listener to update RV")
+        val yearAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, years)
+        vb.yearDropdown.setAdapter(yearAdapter)
+        vb.yearDropdown.setOnClickListener {
+            vb.yearDropdown.text.toString()
+            viewModel.applyFilter(filterState)
+        }
+
+        vb.yearDropdown.setText(filterState["year"], false)
+
+        //TODO fix setOnClickListener, now it triggers only on dropdown meny open not on item select
     }
 
     private fun setupRecyclerViewAdapter() =
