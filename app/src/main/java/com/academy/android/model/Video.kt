@@ -1,6 +1,6 @@
 package com.academy.android.model
 
-data class Videos(
+data class Video(
     val id: Long = 0,
     val name: String = "",
     val date: String = "",

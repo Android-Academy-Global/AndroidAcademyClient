@@ -1,6 +1,6 @@
 package com.academy.android.ui.videos
 
-import com.academy.android.model.Videos
+import com.academy.android.model.Video
 import com.academy.android.ui.base.RvItemData
 
 data class VideosItemData(
@@ -13,7 +13,7 @@ data class VideosItemData(
     val year: String = ""
 ) : RvItemData
 
-fun Videos.toVideosItemData() = VideosItemData(
+fun Video.toVideosItemData() = VideosItemData(
     id = id,
     name = name,
     date = date,

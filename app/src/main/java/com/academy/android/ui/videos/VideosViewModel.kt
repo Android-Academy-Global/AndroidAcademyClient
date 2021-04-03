@@ -1,6 +1,7 @@
 package com.academy.android.ui.videos
 
 import androidx.lifecycle.ViewModel
+import com.academy.android.data.repositories.VideosRepositorySource
 import com.academy.android.model.interactors.GetFilteredVideosUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -10,13 +11,20 @@ import javax.inject.Inject
 @HiltViewModel
 class VideosViewModel @Inject constructor(
     getFilteredVideosUseCase: GetFilteredVideosUseCase,
+    videosRepository: VideosRepositorySource
 ) : ViewModel() {
 
-    private val filterStateFlow = MutableStateFlow(hashMapOf<String, String>())
-    fun applyFilter(filterParameters: HashMap<String, String>) {
+    private val filterStateFlow = MutableStateFlow(videosRepository.filterState)
+    val cities = videosRepository.cities
+    val levels = videosRepository.levels
+    val years = videosRepository.years
+
+    fun updateFilterState(filterParameters: HashMap<String, String>) {
         val _tmp: HashMap<String, String> = HashMap(filterParameters)
         filterStateFlow.value =  _tmp
     }
+
+    fun getFilterState() : HashMap<String, String> = filterStateFlow.value
 
     val videosList: Flow<List<VideosItemData>> =
             getFilteredVideosUseCase(filterStateFlow).flowOn(Dispatchers.IO).map { it.map {it.toVideosItemData() }}

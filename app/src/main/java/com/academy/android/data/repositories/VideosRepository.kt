@@ -1,20 +1,29 @@
 package com.academy.android.data.repositories
 
-import com.academy.android.model.Videos
+import com.academy.android.model.Video
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 interface VideosRepositorySource {
-    val videosList: StateFlow<List<Videos>>
+    val videosList: StateFlow<List<Video>>
+    var filterState: HashMap<String, String>
+    val cities: List<String>
+    val levels: List<String>
+    val years: List<String>
 }
 
 class VideosRepository @Inject constructor() : VideosRepositorySource{
     private val _videosList = MutableStateFlow(provideMokkVideos())
-    override val videosList: StateFlow<List<Videos>> = _videosList
+    override val videosList: StateFlow<List<Video>> = _videosList
 
-    private fun provideMokkVideos(): List<Videos> = listOf(
-        Videos(
+    override val cities = listOf("Moscow", "Minsk", "Tel-Aviv")
+    override val levels = listOf("Fundamentals", "Advanced")
+    override val years = listOf("2019-2020", "2020-2021")
+    override var filterState = hashMapOf("city" to "Moscow", "level" to "Fundamentals", "year" to "2020-2021")
+
+    private fun provideMokkVideos(): List<Video> = listOf(
+        Video(
             1,
             "Android Fundamentals #0: How to Kotlin (Russian language)",
             "27 oct. 2020",
@@ -23,7 +32,7 @@ class VideosRepository @Inject constructor() : VideosRepositorySource{
             "Fundamentals",
             "2020-2021"
         ),
-        Videos(
+        Video(
             2,
             "Coroutines, Yonatan Levin - Android Developer@Monday",
             "7 feb. 2020",
@@ -32,7 +41,7 @@ class VideosRepository @Inject constructor() : VideosRepositorySource{
             "Advanced",
             "2019-2020"
         ),
-        Videos(
+        Video(
             3,
             "Android Academy TLV 2019 - Fundamentals Course - fragments by Gil Goldzweig",
             "25 dec. 2019",
