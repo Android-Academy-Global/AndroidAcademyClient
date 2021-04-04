@@ -44,17 +44,20 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
     }
 
     private fun setupFilterView() {
+        var filterState: FilterState
         val citiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.cities)
         vb.cityDropdown.setAdapter(citiesAdapter)
         vb.cityDropdown.setOnItemClickListener { _, _, _, _ ->
-            viewModel.updateFilterState(vb.cityDropdown.text.toString(), viewModel.getFilterState().level, viewModel.getFilterState().year)
+            filterState = viewModel.getFilterState()
+            viewModel.updateFilterState(vb.cityDropdown.text.toString(), filterState.level, filterState.year)
         }
         vb.cityDropdown.setText(viewModel.getFilterState().city, false)
 
         val levelsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.levels)
         vb.levelDropdown.setAdapter(levelsAdapter)
         vb.levelDropdown.setOnItemClickListener { _, _, _, _ ->
-            viewModel.updateFilterState(viewModel.getFilterState().city, vb.levelDropdown.text.toString(), viewModel.getFilterState().year)
+            filterState = viewModel.getFilterState()
+            viewModel.updateFilterState(filterState.city, vb.levelDropdown.text.toString(), filterState.year)
         }
 
         vb.levelDropdown.setText(viewModel.getFilterState().level, false)
@@ -62,7 +65,8 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
         val yearAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.years)
         vb.yearDropdown.setAdapter(yearAdapter)
         vb.yearDropdown.setOnItemClickListener { _, _, _, _ ->
-            viewModel.updateFilterState(viewModel.getFilterState().city, viewModel.getFilterState().level, vb.yearDropdown.text.toString())
+            filterState = viewModel.getFilterState()
+            viewModel.updateFilterState(filterState.city, filterState.level, vb.yearDropdown.text.toString())
         }
 
         vb.yearDropdown.setText(viewModel.getFilterState().year, false)
