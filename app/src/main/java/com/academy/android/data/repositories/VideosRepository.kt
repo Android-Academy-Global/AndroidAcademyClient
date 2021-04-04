@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 interface VideosRepositorySource {
     val videosList: StateFlow<List<Video>>
-    var filterState: HashMap<String, String>
+    var filterState: FilterState
     val cities: List<String>
     val levels: List<String>
     val years: List<String>
@@ -20,7 +20,7 @@ class VideosRepository @Inject constructor() : VideosRepositorySource{
     override val cities = listOf("Moscow", "Minsk", "Tel-Aviv")
     override val levels = listOf("Fundamentals", "Advanced")
     override val years = listOf("2019-2020", "2020-2021")
-    override var filterState = hashMapOf("city" to "Moscow", "level" to "Fundamentals", "year" to "2020-2021")
+    override var filterState = FilterState()
 
     private fun provideMokkVideos(): List<Video> = listOf(
         Video(
@@ -53,3 +53,9 @@ class VideosRepository @Inject constructor() : VideosRepositorySource{
     )
 
 }
+
+data class FilterState(
+    val city: String = "Moscow",
+    val level: String = "Fundamentals",
+    val year: String = "2020-2021",
+)

@@ -10,12 +10,12 @@ import javax.inject.Inject
 class GetFilteredVideosUseCase @Inject constructor(
     private val videosRepository: VideosRepositorySource
 ) {
-    operator fun invoke(filterParameters: StateFlow<HashMap<String, String>>): Flow<List<Video>> =
+    operator fun invoke(city: String, level: String, year: String): Flow<List<Video>> =
         videosRepository.videosList.map { list ->
             list.filter {
-                it.city == filterParameters.value["city"] &&
-                        it.level == filterParameters.value["level"] &&
-                        it.year == filterParameters.value["year"]
+                it.city == city &&
+                it.level == level &&
+                it.year == year
             }
         }
 }

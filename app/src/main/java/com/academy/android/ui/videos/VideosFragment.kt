@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
 import com.academy.android.R
+import com.academy.android.data.repositories.FilterState
 import com.academy.android.databinding.FragmentVideosBinding
 import com.academy.android.databinding.FragmentVideosItemBinding
 import com.academy.android.ui.base.BaseRVAdapter
@@ -21,8 +22,6 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
     private val viewModel: VideosViewModel by viewModels()
     private val vb by viewBinding(FragmentVideosBinding::bind)
     private val videosAdapter by lazy(::setupRecyclerViewAdapter)
-
-    var filterState = hashMapOf<String, String>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,32 +44,28 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
     }
 
     private fun setupFilterView() {
-        filterState = viewModel.getFilterState()
         val citiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.cities)
         vb.cityDropdown.setAdapter(citiesAdapter)
         vb.cityDropdown.setOnItemClickListener { _, _, _, _ ->
-            filterState["city"] = vb.cityDropdown.text.toString()
-            viewModel.updateFilterState(filterState)
+            viewModel.updateFilterState(vb.cityDropdown.text.toString(), viewModel.getFilterState().level, viewModel.getFilterState().year)
         }
-        vb.cityDropdown.setText(filterState["city"], false)
+        vb.cityDropdown.setText(viewModel.getFilterState().city, false)
 
         val levelsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.levels)
         vb.levelDropdown.setAdapter(levelsAdapter)
         vb.levelDropdown.setOnItemClickListener { _, _, _, _ ->
-            filterState["level"] = vb.levelDropdown.text.toString()
-            viewModel.updateFilterState(filterState)
+            viewModel.updateFilterState(viewModel.getFilterState().city, vb.levelDropdown.text.toString(), viewModel.getFilterState().year)
         }
 
-        vb.levelDropdown.setText(filterState["level"], false)
+        vb.levelDropdown.setText(viewModel.getFilterState().level, false)
 
         val yearAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.years)
         vb.yearDropdown.setAdapter(yearAdapter)
         vb.yearDropdown.setOnItemClickListener { _, _, _, _ ->
-            filterState["year"] = vb.yearDropdown.text.toString()
-            viewModel.updateFilterState(filterState)
+            viewModel.updateFilterState(viewModel.getFilterState().city, viewModel.getFilterState().level, vb.yearDropdown.text.toString())
         }
 
-        vb.yearDropdown.setText(filterState["year"], false)
+        vb.yearDropdown.setText(viewModel.getFilterState().year, false)
     }
 
     private fun setupRecyclerViewAdapter() =
