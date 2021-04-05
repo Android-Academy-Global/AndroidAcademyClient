@@ -21,11 +21,19 @@ class VideosViewModel @Inject constructor(
     val levels = videosRepository.levels
     val years = videosRepository.years
 
-    fun updateFilterState(city: String, level: String, year: String) {
-        filterStateFlow.value = filterStateFlow.value.copy(city, level, year)
+    fun getFilterState() : FilterState = filterStateFlow.value
+
+    fun handleCityFilterUpdated(city: String) {
+        filterStateFlow.value = filterStateFlow.value.copy(city = city)
     }
 
-    fun getFilterState() : FilterState = filterStateFlow.value
+    fun handleLevelFilterUpdated(level: String) {
+        filterStateFlow.value = filterStateFlow.value.copy(level = level)
+    }
+
+    fun handleYearFilterUpdated(year: String) {
+        filterStateFlow.value = filterStateFlow.value.copy(year = year)
+    }
 
     val videosList: Flow<List<VideosItemData>> =
         filterStateFlow

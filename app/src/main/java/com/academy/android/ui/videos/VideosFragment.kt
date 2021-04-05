@@ -48,27 +48,22 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
         val citiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.cities)
         vb.cityDropdown.setAdapter(citiesAdapter)
         vb.cityDropdown.setOnItemClickListener { _, _, _, _ ->
-            filterState = viewModel.getFilterState()
-            viewModel.updateFilterState(vb.cityDropdown.text.toString(), filterState.level, filterState.year)
+            viewModel.handleCityFilterUpdated(vb.cityDropdown.text.toString())
         }
         vb.cityDropdown.setText(viewModel.getFilterState().city, false)
 
         val levelsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.levels)
         vb.levelDropdown.setAdapter(levelsAdapter)
         vb.levelDropdown.setOnItemClickListener { _, _, _, _ ->
-            filterState = viewModel.getFilterState()
-            viewModel.updateFilterState(filterState.city, vb.levelDropdown.text.toString(), filterState.year)
+            viewModel.handleLevelFilterUpdated(vb.levelDropdown.text.toString())
         }
-
         vb.levelDropdown.setText(viewModel.getFilterState().level, false)
 
         val yearAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.years)
         vb.yearDropdown.setAdapter(yearAdapter)
         vb.yearDropdown.setOnItemClickListener { _, _, _, _ ->
-            filterState = viewModel.getFilterState()
-            viewModel.updateFilterState(filterState.city, filterState.level, vb.yearDropdown.text.toString())
+            viewModel.handleYearFilterUpdated(vb.yearDropdown.text.toString())
         }
-
         vb.yearDropdown.setText(viewModel.getFilterState().year, false)
     }
 
