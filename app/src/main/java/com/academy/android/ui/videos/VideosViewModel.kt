@@ -15,9 +15,9 @@ class VideosViewModel @Inject constructor(
     getFilterParametersUseCase: GetFilterParametersUseCase
 ) : ViewModel() {
 
-    private val filterParameters = getFilterParametersUseCase()
-    private var filterState: FilterState = filterParameters.toFilterState(0, 0, 1)
-    private val filterStateFlow = MutableStateFlow(filterState)
+    val filterParameters = getFilterParametersUseCase()
+    val initialFilterState: FilterState = filterParameters.toFilterState(0, 0, 1)
+    private val filterStateFlow = MutableStateFlow(initialFilterState)
 
     fun handleCityFilterUpdated(city: String) {
         filterStateFlow.value = filterStateFlow.value.copy(city = city)
@@ -31,9 +31,6 @@ class VideosViewModel @Inject constructor(
         filterStateFlow.value = filterStateFlow.value.copy(year = year)
     }
 
-    //Getters
-    fun getFilterState() = filterState
-    fun getFilterParameters() = filterParameters
 
     val videosList: Flow<List<VideosItemData>> =
         filterStateFlow
@@ -52,7 +49,7 @@ data class FilterState(
     val year: String,
 )
 
-fun FilterParameters.toFilterState(cityInd: Int, levelInd: Int, yearInd: Int) = FilterState(
+private fun FilterParameters.toFilterState(cityInd: Int, levelInd: Int, yearInd: Int) = FilterState(
     city = cities[cityInd],
     level = levels[levelInd],
     year = years[yearInd]

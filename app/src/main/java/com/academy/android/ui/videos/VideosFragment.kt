@@ -43,26 +43,26 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
     }
 
     private fun setupFilterView() {
-        val citiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.getFilterParameters().cities)
+        val citiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.filterParameters.cities)
         vb.cityDropdown.setAdapter(citiesAdapter)
         vb.cityDropdown.setOnItemClickListener { _, _, _, _ ->
             viewModel.handleCityFilterUpdated(vb.cityDropdown.text.toString())
         }
-        vb.cityDropdown.setText(viewModel.getFilterState().city, false)
+        vb.cityDropdown.setText(viewModel.initialFilterState.city, false)
 
-        val levelsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.getFilterParameters().levels)
+        val levelsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.filterParameters.levels)
         vb.levelDropdown.setAdapter(levelsAdapter)
         vb.levelDropdown.setOnItemClickListener { _, _, _, _ ->
             viewModel.handleLevelFilterUpdated(vb.levelDropdown.text.toString())
         }
-        vb.levelDropdown.setText(viewModel.getFilterState().level, false)
+        vb.levelDropdown.setText(viewModel.initialFilterState.level, false)
 
-        val yearAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.getFilterParameters().years)
+        val yearAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.filterParameters.years)
         vb.yearDropdown.setAdapter(yearAdapter)
         vb.yearDropdown.setOnItemClickListener { _, _, _, _ ->
             viewModel.handleYearFilterUpdated(vb.yearDropdown.text.toString())
         }
-        vb.yearDropdown.setText(viewModel.getFilterState().year, false)
+        vb.yearDropdown.setText(viewModel.initialFilterState.year, false)
     }
 
     private fun setupRecyclerViewAdapter() =
