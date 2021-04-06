@@ -1,27 +1,23 @@
 package com.academy.android.ui.videos
 
 import androidx.lifecycle.ViewModel
-import com.academy.android.data.repositories.FilterState
-import com.academy.android.data.repositories.VideosRepositorySource
+import com.academy.android.data.repositories.FilterParameters
 import com.academy.android.model.interactors.GetFilteredVideosUseCase
+import com.academy.android.model.interactors.GetFilterParametersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class VideosViewModel @Inject constructor(
     getFilteredVideosUseCase: GetFilteredVideosUseCase,
-    videosRepository: VideosRepositorySource
+    getFilterParametersUseCase: GetFilterParametersUseCase
 ) : ViewModel() {
 
-    private val filterStateFlow = MutableStateFlow(videosRepository.filterState)
-    val cities = videosRepository.cities
-    val levels = videosRepository.levels
-    val years = videosRepository.years
-
-    fun getFilterState() : FilterState = filterStateFlow.value
+    private val filterParameters = getFilterParametersUseCase()
+    private var filterState: FilterState = filterParameters.toFilterState(0, 0, 1)
+    private val filterStateFlow = MutableStateFlow(filterState)
 
     fun handleCityFilterUpdated(city: String) {
         filterStateFlow.value = filterStateFlow.value.copy(city = city)
@@ -35,6 +31,10 @@ class VideosViewModel @Inject constructor(
         filterStateFlow.value = filterStateFlow.value.copy(year = year)
     }
 
+    //Getters
+    fun getFilterState() = filterState
+    fun getFilterParameters() = filterParameters
+
     val videosList: Flow<List<VideosItemData>> =
         filterStateFlow
             .flatMapLatest { filterState ->
@@ -44,5 +44,16 @@ class VideosViewModel @Inject constructor(
                         listOfVideos.map { it.toVideosItemData() }
                     }
             }
-
 }
+
+data class FilterState(
+    val city: String,
+    val level: String,
+    val year: String,
+)
+
+fun FilterParameters.toFilterState(cityInd: Int, levelInd: Int, yearInd: Int) = FilterState(
+    city = cities[cityInd],
+    level = levels[levelInd],
+    year = years[yearInd]
+)

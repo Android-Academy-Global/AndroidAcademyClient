@@ -9,7 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
 import com.academy.android.R
-import com.academy.android.data.repositories.FilterState
 import com.academy.android.databinding.FragmentVideosBinding
 import com.academy.android.databinding.FragmentVideosItemBinding
 import com.academy.android.ui.base.BaseRVAdapter
@@ -44,22 +43,21 @@ class VideosFragment : Fragment(R.layout.fragment_videos) {
     }
 
     private fun setupFilterView() {
-        var filterState: FilterState
-        val citiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.cities)
+        val citiesAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.getFilterParameters().cities)
         vb.cityDropdown.setAdapter(citiesAdapter)
         vb.cityDropdown.setOnItemClickListener { _, _, _, _ ->
             viewModel.handleCityFilterUpdated(vb.cityDropdown.text.toString())
         }
         vb.cityDropdown.setText(viewModel.getFilterState().city, false)
 
-        val levelsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.levels)
+        val levelsAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.getFilterParameters().levels)
         vb.levelDropdown.setAdapter(levelsAdapter)
         vb.levelDropdown.setOnItemClickListener { _, _, _, _ ->
             viewModel.handleLevelFilterUpdated(vb.levelDropdown.text.toString())
         }
         vb.levelDropdown.setText(viewModel.getFilterState().level, false)
 
-        val yearAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.years)
+        val yearAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, viewModel.getFilterParameters().years)
         vb.yearDropdown.setAdapter(yearAdapter)
         vb.yearDropdown.setOnItemClickListener { _, _, _, _ ->
             viewModel.handleYearFilterUpdated(vb.yearDropdown.text.toString())

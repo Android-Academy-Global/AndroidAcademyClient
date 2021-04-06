@@ -3,7 +3,6 @@ package com.academy.android.model.interactors
 import com.academy.android.data.repositories.VideosRepositorySource
 import com.academy.android.model.Video
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 

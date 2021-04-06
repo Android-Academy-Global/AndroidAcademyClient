@@ -7,20 +7,18 @@ import javax.inject.Inject
 
 interface VideosRepositorySource {
     val videosList: StateFlow<List<Video>>
-    var filterState: FilterState
-    val cities: List<String>
-    val levels: List<String>
-    val years: List<String>
+    fun getFilterParameters() : FilterParameters
 }
 
-class VideosRepository @Inject constructor() : VideosRepositorySource{
+class VideosRepository @Inject constructor() : VideosRepositorySource {
     private val _videosList = MutableStateFlow(provideMokkVideos())
     override val videosList: StateFlow<List<Video>> = _videosList
 
-    override val cities = listOf("Moscow", "Minsk", "Tel-Aviv")
-    override val levels = listOf("Fundamentals", "Advanced")
-    override val years = listOf("2019-2020", "2020-2021")
-    override var filterState = FilterState()
+    private val filterParameters = FilterParameters(listOf("Moscow", "Minsk", "Tel-Aviv"),
+                                                        listOf("Fundamentals", "Advanced"),
+                                                        listOf("2019-2020", "2020-2021"))
+
+    override fun getFilterParameters() : FilterParameters = filterParameters
 
     private fun provideMokkVideos(): List<Video> = listOf(
         Video(
@@ -54,8 +52,8 @@ class VideosRepository @Inject constructor() : VideosRepositorySource{
 
 }
 
-data class FilterState(
-    val city: String = "Moscow",
-    val level: String = "Fundamentals",
-    val year: String = "2020-2021",
+data class FilterParameters(
+    val cities: List<String>,
+    val levels: List<String>,
+    val years: List<String>
 )
