@@ -2,6 +2,7 @@ package com.academy.android.ui.videos
 
 import androidx.lifecycle.ViewModel
 import com.academy.android.data.repositories.FilterParameters
+import com.academy.android.model.FilterState
 import com.academy.android.model.interactors.GetFilteredVideosUseCase
 import com.academy.android.model.interactors.GetFilterParametersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,11 +44,7 @@ class VideosViewModel @Inject constructor(
             }
 }
 
-data class FilterState(
-    val city: String,
-    val level: String,
-    val year: String,
-)
+
 
 private fun FilterParameters.toFilterState(cityInd: Int, levelInd: Int, yearInd: Int) = FilterState(
     city = cities[cityInd],
