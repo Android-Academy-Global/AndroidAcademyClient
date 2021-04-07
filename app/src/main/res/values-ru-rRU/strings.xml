@@ -6,4 +6,7 @@
     <string name="title_profile">Профиль</string>
     <string name="news__tab_title_featured">Рекомендуемые</string>
     <string name="news__tab_title_passed">Прошедшие</string>
+    <string name="level_dropdown_hint">Уровень</string>
+    <string name="year_dropdown_hint">Год</string>
+    <string name="city_dropdown_hint">Город</string>
 </resources>

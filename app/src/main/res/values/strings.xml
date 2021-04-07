@@ -5,4 +5,7 @@
     <string name="title_profile">Profile</string>
     <string name="news__tab_title_featured">Featured</string>
     <string name="news__tab_title_passed">Passed</string>
+    <string name="level_dropdown_hint">Level</string>
+    <string name="year_dropdown_hint">Year</string>
+    <string name="city_dropdown_hint">City</string>
 </resources>
