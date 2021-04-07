@@ -1,5 +1,6 @@
 package com.academy.android.data.repositories
 
+import com.academy.android.model.FilterParameters
 import com.academy.android.model.Video
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -51,9 +52,3 @@ class VideosRepository @Inject constructor() : VideosRepositorySource {
     )
 
 }
-
-data class FilterParameters(
-    val cities: List<String>,
-    val levels: List<String>,
-    val years: List<String>
-)
