@@ -2,7 +2,8 @@ buildscript {
   val kotlinVersion by extra("1.4.31")
   val hiltVersion by extra("2.33-beta")
   val navigationVersion by extra("2.3.4")
-  repositories {
+    val kotlin_version by extra("1.4.31")
+    repositories {
     mavenCentral()
     google()
     jcenter()

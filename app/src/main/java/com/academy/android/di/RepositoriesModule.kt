@@ -1,9 +1,6 @@
 package com.academy.android.di
 
-import com.academy.android.data.repositories.ChatsRepository
-import com.academy.android.data.repositories.ChatsRepositorySource
-import com.academy.android.data.repositories.NewsRepository
-import com.academy.android.data.repositories.NewsRepositorySource
+import com.academy.android.data.repositories.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -25,4 +22,9 @@ abstract class RepositoriesModule {
         newsRepository: NewsRepository
     ): NewsRepositorySource
 
+    @Binds
+    @Singleton
+    abstract fun bindProfileRepository(
+        profileRepository: ProfileRepository
+    ): ProfileRepositorySource
 }

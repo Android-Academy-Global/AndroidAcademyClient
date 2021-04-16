@@ -5,6 +5,7 @@ plugins {
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-android")
 }
 
 android {
@@ -66,6 +67,8 @@ dependencies {
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:${rootProject.extra["navigationVersion"]}")
     implementation("androidx.navigation:navigation-ui-ktx:${rootProject.extra["navigationVersion"]}")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     // Lifecycle
     val lifecycleVersion = "2.3.0"
@@ -94,6 +97,12 @@ dependencies {
 
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")
+
+    //SharedPreference
+    implementation ("androidx.preference:preference-ktx:1.1.1")
+
+    //Gson
+    implementation ("com.google.code.gson:gson:2.8.6")
 
     // DB
     val roomVersion = "2.2.6"
