@@ -17,7 +17,7 @@
     <string name="edit_name">Ваше имя</string>
     <string name="edit_surname">Ваша фамилия</string>
     <string name="edit_number">Телефон</string>
-    <string name="edit_email">Почтовый адрес</string>
+    <string name="edit_email">Адрес электронной почты</string>
     <string name="edit_status">Кто вы?(Студент/Ментор/Организатор)</string>
     <string name="btn_save_profile">Сохранить</string>
     <string name="become_speaker_label">Become speaker</string>

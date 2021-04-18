@@ -5,7 +5,6 @@ plugins {
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
-    id("kotlin-android")
 }
 
 android {
@@ -53,13 +52,13 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("com.google.android.material:material:1.3.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.0")
 
     // Activity KTX
-    implementation("androidx.activity:activity-ktx:1.3.0-alpha04")
+    implementation("androidx.activity:activity-ktx:1.3.0-alpha06")
 
     // Fragment KTX
-    implementation("androidx.fragment:fragment-ktx:1.3.1")
+    implementation("androidx.fragment:fragment-ktx:1.3.2")
 
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
@@ -67,8 +66,6 @@ dependencies {
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:${rootProject.extra["navigationVersion"]}")
     implementation("androidx.navigation:navigation-ui-ktx:${rootProject.extra["navigationVersion"]}")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     // Lifecycle
     val lifecycleVersion = "2.3.0"
@@ -100,9 +97,6 @@ dependencies {
 
     //SharedPreference
     implementation ("androidx.preference:preference-ktx:1.1.1")
-
-    //Gson
-    implementation ("com.google.code.gson:gson:2.8.6")
 
     // DB
     val roomVersion = "2.2.6"

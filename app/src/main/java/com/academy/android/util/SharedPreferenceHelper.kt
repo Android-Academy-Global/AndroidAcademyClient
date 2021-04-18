@@ -3,25 +3,24 @@ package com.academy.android.util
 import android.content.Context
 import androidx.preference.PreferenceManager
 import com.academy.android.model.Profile
-import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 class SharedPreferenceHelper @Inject constructor(
     @ApplicationContext context: Context
 ) {
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-    private val gson = Gson()
 
     fun saveProfData(profile: Profile) {
-        val gsonProfile = gson.toJson(profile)
-        prefs.edit().putString(PROFILE, gsonProfile).apply()
+        val serializedProfile = Json.encodeToString(Profile.serializer(), profile)
+        prefs.edit().putString(PROFILE, serializedProfile).apply()
     }
 
     fun getProfData(): Profile {
         val profData = prefs.getString(PROFILE, null)
         return if (profData != null){
-            gson.fromJson(profData, Profile::class.java)
+            Json.decodeFromString(Profile.serializer(), profData)
         } else {
             Profile()
         }

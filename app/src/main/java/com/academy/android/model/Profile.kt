@@ -1,5 +1,8 @@
 package com.academy.android.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Profile(
     var profPic: String? = null,
     var name: String? = null,
