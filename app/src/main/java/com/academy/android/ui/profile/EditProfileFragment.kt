@@ -92,18 +92,18 @@ class EditProfileFragment: Fragment(), ImagePickerDialog.ImageSelectInterface {
         vb.btnSaveProfile.setOnClickListener {
             when {
                 TextUtils.isEmpty(vb.fieldEditName.text) -> {
-                    vb.fieldEditName.error = "Похоже, вы забыли заполнить поле \"Ваше имя\""
+                    vb.fieldEditName.error = getString(R.string.field_name_error)
                 }
                 TextUtils.isEmpty(vb.fieldEditSurname.text) -> {
-                    vb.fieldEditSurname.error = "Похоже, вы забыли заполнить поле \"Ваша фамилия\""
+                    vb.fieldEditSurname.error = getString(R.string.field_surname_error)
                 }
                 (TextUtils.isEmpty(vb.fieldEditEmail.text)) || (!Patterns.EMAIL_ADDRESS
                     .matcher(vb.fieldEditEmail.text)
                     .matches()) -> {
-                    vb.fieldEditEmail.error = "Проверьте правильность введенного Email адреса"
+                    vb.fieldEditEmail.error = getString(R.string.field_email_error)
                 }
                 TextUtils.isEmpty(vb.fieldEditStatus.text) -> {
-                    vb.fieldEditStatus.error = "Пожалуйста укажите свой статус"
+                    vb.fieldEditStatus.error = getString(R.string.field_status_error)
                 }
                 else -> {
                     //forming Profile object's properties

@@ -20,10 +20,14 @@
     <string name="edit_surname">Your surname</string>
     <string name="edit_number">Phone number</string>
     <string name="edit_email">Email</string>
-    <string name="edit_status">You are...(Student, Mentor, Organizer)</string>
+    <string name="edit_status">You are…(Student, Mentor, Organizer)</string>
     <string name="btn_save_profile">Save</string>
     <string name="become_speaker_label">Become speaker</string>
     <string name="edit_profile_label">Edit profile</string>
     <string name="pick_dialog_camera">Camera</string>
     <string name="dialog_pick_gallery">Gallery</string>
+    <string name="field_name_error">Seems like you forgot to set your name</string>
+    <string name="field_surname_error">Seems like you forgot to set your surname</string>
+    <string name="field_email_error">Check that your set correct email</string>
+    <string name="field_status_error">Please, set your status</string>
 </resources>
