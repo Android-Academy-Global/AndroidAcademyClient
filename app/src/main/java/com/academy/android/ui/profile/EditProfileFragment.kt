@@ -11,7 +11,9 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -55,7 +57,8 @@ class EditProfileFragment: Fragment(), ImagePickerDialog.ImageSelectInterface {
             //filling profile with all the necessary data
             editProfViewModel.profileData.collectLatest { profile ->
                 //avatar
-                vb.profilePicture.load(profile.profPic)
+                profPicture = profile.profPic
+                vb.profilePicture.load(profPicture)
                 //name
                 vb.fieldEditName.setText(profile.name)
                 //surname
@@ -80,7 +83,22 @@ class EditProfileFragment: Fragment(), ImagePickerDialog.ImageSelectInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupNestedScrollListener()
         setupListeners()
+    }
+
+    private fun setupNestedScrollListener() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            vb.fieldsScroll.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+                if ((scrollY > oldScrollY) && vb.btnSaveProfile.isVisible){
+                    vb.btnSaveProfile.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
+                    vb.btnSaveProfile.isVisible = false
+                } else if ((scrollY < oldScrollY) && !vb.btnSaveProfile.isVisible){
+                    vb.btnSaveProfile.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
+                    vb.btnSaveProfile.isVisible = true
+                }
+            }
+        }
     }
 
     private fun setupListeners() {

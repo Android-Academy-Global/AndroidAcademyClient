@@ -28,7 +28,7 @@
             app:enterAnim="@anim/slide_left"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_right" />
+            app:popExitAnim="@anim/slide_right"/>
         <action
             android:id="@+id/action_edit_profile"
             app:destination="@id/navigation_edit_profile"

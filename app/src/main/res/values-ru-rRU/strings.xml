@@ -19,7 +19,7 @@
     <string name="edit_number">Телефон</string>
     <string name="edit_email">Адрес электронной почты</string>
     <string name="edit_status">Кто вы?(Студент/Ментор/Организатор)</string>
-    <string name="btn_save_profile">Сохранить</string>
+    <string name="btn_save_profile">Обновить профиль</string>
     <string name="become_speaker_label">Become speaker</string>
     <string name="pick_dialog_camera">Камера</string>
     <string name="dialog_pick_gallery">Галлерея</string>

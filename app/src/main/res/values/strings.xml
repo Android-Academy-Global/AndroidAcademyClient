@@ -21,7 +21,7 @@
     <string name="edit_number">Phone number</string>
     <string name="edit_email">Email</string>
     <string name="edit_status">You are…(Student, Mentor, Organizer)</string>
-    <string name="btn_save_profile">Save</string>
+    <string name="btn_save_profile">Update profile</string>
     <string name="become_speaker_label">Become speaker</string>
     <string name="edit_profile_label">Edit profile</string>
     <string name="pick_dialog_camera">Camera</string>

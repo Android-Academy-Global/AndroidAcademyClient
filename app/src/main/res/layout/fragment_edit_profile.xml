@@ -7,45 +7,44 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.EditProfileFragment">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/editProfileCard"
         android:layout_width="130dp"
         android:layout_height="130dp"
         app:cardCornerRadius="65dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="53dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         >
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/profilePicture"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar_placeholder" />
 
-            <ImageView
-                android:id="@+id/profilePicture"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/profile_image_border"
-                android:scaleType="centerCrop"
-                />
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/profAvaBorder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/profile_image_border"/>
 
     </androidx.cardview.widget.CardView>
 
     <ImageView
         android:id="@+id/selectPic"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/ic_add_picture"
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/editProfileCard"
         app:layout_constraintEnd_toEndOf="@+id/editProfileCard" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/fieldsScroll"
         android:layout_width="match_parent"
         android:layout_height="315dp"
         android:fillViewport="true"
@@ -149,7 +148,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/btn_save_profile"
