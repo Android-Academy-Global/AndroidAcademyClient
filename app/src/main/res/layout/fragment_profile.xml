@@ -34,29 +34,19 @@
         app:layout_constraintBottom_toTopOf="@id/main_guideline"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profileCard"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        app:cardCornerRadius="65dp"
+        android:padding="4dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_guideline">
-
-        <ImageView
-            android:id="@+id/editProfileCard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/avatar_placeholder" />
-
-        <ImageView
-            android:id="@+id/profAvaBorder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/profile_image_border"/>
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="@+id/main_guideline"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.CircularBorder"
+        app:strokeColor="?attr/colorPrimary"
+        app:strokeWidth="6dp" />
 
     <TextView
         android:id="@+id/profile_position"

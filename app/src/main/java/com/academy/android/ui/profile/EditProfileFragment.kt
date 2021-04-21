@@ -8,9 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Patterns
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
@@ -28,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class EditProfileFragment: Fragment(), ImagePickerDialog.ImageSelectInterface {
+class EditProfileFragment: Fragment(R.layout.fragment_edit_profile), ImagePickerDialog.ImageSelectInterface {
 
     private val editProfViewModel: ProfileViewModel by viewModels()
     private val vb by viewBinding(FragmentEditProfileBinding::bind)
@@ -71,14 +69,6 @@ class EditProfileFragment: Fragment(), ImagePickerDialog.ImageSelectInterface {
                 vb.fieldEditStatus.setText(profile.status)
             }
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

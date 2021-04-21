@@ -7,32 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.EditProfileFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/editProfileCard"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profilePicture"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        app:cardCornerRadius="65dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="52dp"
+        android:padding="4dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        >
-
-        <ImageView
-            android:id="@+id/profilePicture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/avatar_placeholder" />
-
-        <ImageView
-            android:id="@+id/profAvaBorder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/profile_image_border"/>
-
-    </androidx.cardview.widget.CardView>
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.CircularBorder"
+        app:strokeColor="?attr/colorPrimary"
+        app:strokeWidth="6dp" />
 
     <ImageView
         android:id="@+id/selectPic"
@@ -40,8 +28,8 @@
         android:layout_height="40dp"
         android:src="@drawable/ic_add_picture"
         android:elevation="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editProfileCard"
-        app:layout_constraintEnd_toEndOf="@+id/editProfileCard" />
+        app:layout_constraintBottom_toBottomOf="@+id/profilePicture"
+        app:layout_constraintEnd_toEndOf="@+id/profilePicture" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/fieldsScroll"
@@ -53,7 +41,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editProfileCard">
+        app:layout_constraintTop_toBottomOf="@id/profilePicture">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

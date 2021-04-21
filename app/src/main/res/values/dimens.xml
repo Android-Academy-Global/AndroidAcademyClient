@@ -11,6 +11,15 @@
     <dimen name="spacing_24">24dp</dimen>
     <dimen name="spacing_32">32dp</dimen>
 
+    <dimen name="btn_radius_50">50dp</dimen>
+    <dimen name="btn_radius_24">24dp</dimen>
+    <dimen name="btn_size_24">24dp</dimen>
+
+    <dimen name="btn_margin_10">10dp</dimen>
+    <dimen name="dialog_btn_size">100dp</dimen>
+
+    <dimen name="text_16">16sp</dimen>
+
     <dimen name="news__card_corner_radius">25dp</dimen>
     <dimen name="news__item_picture_height">200dp</dimen>
     <dimen name="news__card_elevation">16dp</dimen>

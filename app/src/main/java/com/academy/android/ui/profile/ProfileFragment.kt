@@ -30,7 +30,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun setupViews() {
         lifecycleScope.launchWhenResumed {
             profileViewModel.profileData.collectLatest { profile ->
-                vb.editProfileCard.load(profile.profPic)
+                vb.profileCard.load(profile.profPic)
                 vb.textUserEmail.text = profile.email
             }
         }
