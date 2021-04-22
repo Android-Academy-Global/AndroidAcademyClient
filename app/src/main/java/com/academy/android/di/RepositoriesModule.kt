@@ -24,6 +24,12 @@ abstract class RepositoriesModule {
 
     @Binds
     @Singleton
+    abstract fun bindVideosRepository(
+        videosRepository: VideosRepository
+    ): VideosRepositorySource
+
+    @Binds
+    @Singleton
     abstract fun bindProfileRepository(
         profileRepository: ProfileRepository
     ): ProfileRepositorySource
