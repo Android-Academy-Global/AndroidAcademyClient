@@ -9,4 +9,29 @@
     <string name="level_dropdown_hint">Уровень</string>
     <string name="year_dropdown_hint">Год</string>
     <string name="city_dropdown_hint">Город</string>
+    <string name="mentors_orgs">Организаторы/Менторы</string>
+    <string name="become_speaker" translatable="false">Стать спикером</string>
+    <string name="email_title">Почта</string>
+    <string name="creators">Создатели</string>
+    <string name="question">Задать вопрос</string>
+    <string name="hello_blank_fragment">Пустой фрагмент</string>
+    <string name="field_report_description">О чем будет Ваш доклад?</string>
+    <string name="report_send_btn_text">Подать заявку</string>
+    <string name="edit_name">Ваше имя</string>
+    <string name="edit_surname">Ваша фамилия</string>
+    <string name="edit_number">Телефон</string>
+    <string name="edit_email">Адрес электронной почты</string>
+    <string name="edit_status">Кто вы?(Студент/Ментор/Организатор)</string>
+    <string name="btn_save_profile">Обновить профиль</string>
+    <string name="become_speaker_label">Become speaker</string>
+    <string name="pick_dialog_camera">Камера</string>
+    <string name="dialog_pick_gallery">Галлерея</string>
+    <string name="field_report_title">Описание доклада</string>
+    <string name="report_hint">Заголовок</string>
+    <string name="form_report_title">Название доклада</string>
+    <string name="edit_profile_label">Редактировать профиль</string>
+    <string name="field_name_error">Похоже, вы забыли заполнить поле \"Ваше имя\"</string>
+    <string name="field_surname_error">Похоже, вы забыли заполнить поле \"Ваша фамилия\"</string>
+    <string name="field_email_error">Проверьте правильность введенного Email адреса</string>
+    <string name="field_status_error">Пожалуйста укажите свой статус</string>
 </resources>

@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/colorPrimaryVariant"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnCamera"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/btn_margin_10"
+        android:layout_weight="1"
+        app:cardCornerRadius="@dimen/btn_radius_24"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="?attr/colorSecondary"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/dialog_btn_size"
+                android:layout_height="@dimen/dialog_btn_size"
+                android:src="@drawable/ic_camera_picker"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pick_dialog_camera"
+                android:textSize="@dimen/text_16"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnGallery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/btn_margin_10"
+        android:layout_weight="1"
+        app:cardCornerRadius="@dimen/btn_radius_24"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="?attr/colorSecondary">
+
+            <ImageView
+                android:layout_width="@dimen/dialog_btn_size"
+                android:layout_height="@dimen/dialog_btn_size"
+                android:src="@drawable/ic_gallery_picker"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_pick_gallery"
+                android:textSize="@dimen/text_16"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

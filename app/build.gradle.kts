@@ -52,13 +52,13 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("com.google.android.material:material:1.3.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.0")
 
     // Activity KTX
-    implementation("androidx.activity:activity-ktx:1.3.0-alpha04")
+    implementation("androidx.activity:activity-ktx:1.3.0-alpha06")
 
     // Fragment KTX
-    implementation("androidx.fragment:fragment-ktx:1.3.1")
+    implementation("androidx.fragment:fragment-ktx:1.3.2")
 
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
@@ -94,6 +94,9 @@ dependencies {
 
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")
+
+    //SharedPreference
+    implementation ("androidx.preference:preference-ktx:1.1.1")
 
     // DB
     val roomVersion = "2.2.6"
