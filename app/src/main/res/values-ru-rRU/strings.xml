@@ -34,4 +34,9 @@
     <string name="field_surname_error">Похоже, вы забыли заполнить поле \"Ваша фамилия\"</string>
     <string name="field_email_error">Проверьте правильность введенного Email адреса</string>
     <string name="field_status_error">Пожалуйста укажите свой статус</string>
+
+    <string name="lecture_image_desc">Фото лекции</string>
+    <string name="like_image_desc">Иконка для лайков</string>
+    <string name="comment_image_desc">Иконка для комментов</string>
+    <string name="share_image_desc">Поделиться</string>
 </resources>

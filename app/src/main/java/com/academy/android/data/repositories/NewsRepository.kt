@@ -1,28 +1,28 @@
 package com.academy.android.data.repositories
 
 import com.academy.android.model.News
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 import java.util.*
 import javax.inject.Inject
-import javax.inject.Singleton
 
-interface NewsRepositorySource{
+interface NewsRepositorySource {
     val newsList: StateFlow<List<News>>
     fun updateLiked(id: Long, isLiked: Boolean): Boolean
     fun getIsLikedState(id: Long): Boolean
     fun getLikesCountForId(chatId: Long): Flow<Int>
 }
 
-
-class NewsRepository @Inject constructor(
-
-):NewsRepositorySource {
-    private val _newsList = MutableStateFlow<List<News>>(provideMokkNews())
-   override val newsList: StateFlow<List<News>> = _newsList
+class NewsRepository @Inject constructor() : NewsRepositorySource {
+    private val _newsList = MutableStateFlow(provideMokkNews())
+    override val newsList: StateFlow<List<News>> = _newsList
 
     private val likedNews = mutableSetOf<Long>()
 
-    private val likesCountState = MutableStateFlow<Map<Long, Int>>(provideMokkLikes())
+    private val likesCountState = MutableStateFlow(provideMokkLikes())
 
 
     override fun updateLiked(id: Long, isLiked: Boolean): Boolean {
@@ -36,7 +36,7 @@ class NewsRepository @Inject constructor(
         return isLiked
     }
 
-    override  fun getIsLikedState(id: Long): Boolean =
+    override fun getIsLikedState(id: Long): Boolean =
         id in likedNews
 
     override fun getLikesCountForId(chatId: Long): Flow<Int> =
@@ -69,7 +69,7 @@ class NewsRepository @Inject constructor(
             id = 1,
             text = """В понедельник было не просто! Артур поведал много всего про реактивные подходы и саму библиотеку RxJava. Хоть домашки к этой лекции не будет, но скучать не придется. Ведь есть RxRiddles.""",
             link = "https://developer.android.com",
-            picture = "https://multi-thread.com/wp-content/uploads/2019/05/hqdefault.jpg",
+            picture = "https://miro.medium.com/max/1200/1*26WzvNZ6aQJFSG5A0MoTnA.png",
             date = getFutureDate()
         ),
         News(

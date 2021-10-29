@@ -20,8 +20,8 @@
 
     <dimen name="text_16">16sp</dimen>
 
-    <dimen name="news__card_corner_radius">25dp</dimen>
+    <dimen name="news__card_corner_radius">24dp</dimen>
     <dimen name="news__item_picture_height">200dp</dimen>
-    <dimen name="news__card_elevation">16dp</dimen>
+    <dimen name="news__card_elevation">4dp</dimen>
 
 </resources>

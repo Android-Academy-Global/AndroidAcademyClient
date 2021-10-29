@@ -33,4 +33,10 @@
     <string name="field_surname_error">Seems like you forgot to set your surname</string>
     <string name="field_email_error">Check that your set correct email</string>
     <string name="field_status_error">Please, set your status</string>
+
+    <!-- content descriptions -->
+    <string name="lecture_image_desc">Lecture preview</string>
+    <string name="like_image_desc">Clickable image</string>
+    <string name="comment_image_desc">Clickable image</string>
+    <string name="share_image_desc">Clickable image</string>
 </resources>

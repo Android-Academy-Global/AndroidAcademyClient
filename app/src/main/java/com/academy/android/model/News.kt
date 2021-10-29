@@ -9,4 +9,6 @@ data class News(
     val picture: String = "",
     val date: Date = Date(),
     val chatId: Long = id,
+    val likesCount: Int = 0,
+    val commentsCount: Int = 0
 )

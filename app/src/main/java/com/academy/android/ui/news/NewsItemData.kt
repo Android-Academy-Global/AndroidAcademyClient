@@ -11,6 +11,8 @@ data class NewsItemData(
     val picture: String = "",
     val date: Date = Date(),
     val chatId: Long = 0,
+    val likesCount: Int = 0,
+    val commentsCount: Int = 0
 ) : RvItemData
 
 fun News.toNewsItemData() = NewsItemData(
@@ -20,4 +22,6 @@ fun News.toNewsItemData() = NewsItemData(
     picture = picture,
     date = date,
     chatId = chatId,
+    likesCount = likesCount,
+    commentsCount = commentsCount
 )
