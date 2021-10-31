@@ -14,18 +14,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.academy.android.R
 
+private const val FEATURED_TAB_INDEX = 0
+private const val PASSED_TAB_INDEX = 1
+
 @Composable
 fun NewsScreen(vm: NewsViewModel) {
     val newsList: List<NewsItemData> by vm.newsList.collectAsState(initial = listOf())
-    NewsFeedView(newsList = newsList)
+    NewsFeedView(newsList = newsList, vm = vm)
 }
 
 @Composable
-private fun NewsFeedView(newsList: List<NewsItemData>) {
+private fun NewsFeedView(newsList: List<NewsItemData>, vm: NewsViewModel) {
     var tabIndex by remember { mutableStateOf(0) }
-    val tabNames: List<String> = listOf(
-        stringResource(id = R.string.news__tab_title_featured),
-        stringResource(id = R.string.news__tab_title_passed)
+    val tabNames: Map<Int, String> = mapOf(
+        FEATURED_TAB_INDEX to stringResource(id = R.string.news__tab_title_featured),
+        PASSED_TAB_INDEX to stringResource(id = R.string.news__tab_title_passed)
     )
 
     Column {
@@ -34,12 +37,18 @@ private fun NewsFeedView(newsList: List<NewsItemData>) {
             backgroundColor = Color(R.color.dark_green),
             contentColor = Color(R.color.white)
         ) {
-            tabNames.withIndex()
-                .forEach { tab ->
+            tabNames.forEach { tab ->
                     Tab(
-                        selected = (tabIndex == tab.index),
-                        onClick = { tabIndex = tab.index },
-                        text = { Text(text = tab.value) })
+                        selected = (tabIndex == tab.key),
+                        onClick = {
+                            tabIndex = tab.key
+                            when (tabIndex) {
+                                FEATURED_TAB_INDEX -> vm.applyFilterNew()
+                                PASSED_TAB_INDEX -> vm.applyFilterOld()
+                            }
+                        },
+                        text = { Text(text = tab.value) }
+                    )
                 }
         }
         NewsList(newsList = newsList)

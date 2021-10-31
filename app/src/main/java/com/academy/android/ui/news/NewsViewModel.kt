@@ -1,7 +1,11 @@
 package com.academy.android.ui.news
 
 import androidx.lifecycle.ViewModel
-import com.academy.android.model.interactors.*
+import com.academy.android.model.interactors.GetFeaturedNewsUseCase
+import com.academy.android.model.interactors.GetLikesCountForChatIdUseCase
+import com.academy.android.model.interactors.GetMessagesCountForChatIdUseCase
+import com.academy.android.model.interactors.GetPassedNewsUseCase
+import com.academy.android.model.interactors.NewsLikesInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -27,8 +31,11 @@ class NewsViewModel @Inject constructor(
             getPassedNewsUseCase().flowOn(Dispatchers.IO),
             filterState
         ) { featuredNews, passedNews, filterState ->
-            if (filterState) featuredNews.map { it.toNewsItemData() }
-            else passedNews.map { it.toNewsItemData() }
+            if (filterState) {
+                featuredNews.map { it.toNewsItemData() }
+            } else {
+                passedNews.map { it.toNewsItemData() }
+            }
         }
 
     fun getIsLiked(id: Long): Boolean =
