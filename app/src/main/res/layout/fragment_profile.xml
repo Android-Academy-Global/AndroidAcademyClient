@@ -29,7 +29,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:src="@drawable/ic_prof_edit"
+        android:src="@drawable/ic_edit"
         app:layout_constraintBottom_toTopOf="@id/main_guideline"
         app:layout_constraintEnd_toEndOf="parent" />
 
