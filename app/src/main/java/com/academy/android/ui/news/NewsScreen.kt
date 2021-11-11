@@ -10,7 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.academy.android.R
 
@@ -32,11 +31,7 @@ private fun NewsFeedView(newsList: List<NewsItemData>, vm: NewsViewModel) {
     )
 
     Column {
-        TabRow(
-            selectedTabIndex = tabIndex,
-            backgroundColor = Color(R.color.dark_green),
-            contentColor = Color(R.color.white)
-        ) {
+        TabRow(selectedTabIndex = tabIndex) {
             tabNames.forEach { tab ->
                     Tab(
                         selected = (tabIndex == tab.key),

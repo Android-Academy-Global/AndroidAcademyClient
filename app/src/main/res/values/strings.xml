@@ -19,9 +19,9 @@
     <string name="field_report_title">Report description</string>
     <string name="field_report_description">What is your report about?</string>
     <string name="report_send_btn_text">Submit an application</string>
-    <string name="edit_name">Your name</string>
-    <string name="edit_surname">Your surname</string>
-    <string name="edit_number">Phone number</string>
+    <string name="edit_first_name">First name</string>
+    <string name="edit_last_name">Last name</string>
+    <string name="edit_phone">Phone number</string>
     <string name="edit_email">Email</string>
     <string name="edit_status">You are…(Student, Mentor, Organizer)</string>
     <string name="btn_save_profile">Update profile</string>
@@ -35,8 +35,11 @@
     <string name="field_status_error">Please, set your status</string>
 
     <!-- content descriptions -->
-    <string name="lecture_image_desc">Lecture preview</string>
-    <string name="like_image_desc">Clickable image</string>
-    <string name="comment_image_desc">Clickable image</string>
-    <string name="share_image_desc">Clickable image</string>
+    <string name="lecture_image_desc" translatable="false">Lecture preview</string>
+    <string name="like_image_desc" translatable="false">Clickable image</string>
+    <string name="comment_image_desc" translatable="false">Clickable image</string>
+    <string name="share_image_desc" translatable="false">Clickable image</string>
+    <string name="user_profile_pic_desc" translatable="false">User profile picture</string>
+    <string name="logout_desc" translatable="false">Log out</string>
+    <string name="edit_profile_desc" translatable="false">Edit user profile info</string>
 </resources>

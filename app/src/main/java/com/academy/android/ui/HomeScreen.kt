@@ -21,6 +21,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.academy.android.ui.news.NewsScreen
 import com.academy.android.ui.news.NewsViewModel
+import com.academy.android.ui.profile.ProfileScreen
+import com.academy.android.ui.profile.ProfileViewModel
 
 @Composable
 fun HomeScreen() {
@@ -29,9 +31,10 @@ fun HomeScreen() {
 
 @Composable
 private fun AppBottomNavigation(
-    navController: NavHostController,
-    vm: NewsViewModel = viewModel()
+    navController: NavHostController
 ) {
+    val newsVm: NewsViewModel = viewModel()
+    val profileVm: ProfileViewModel = viewModel()
     val items = listOf(
         Screen.News,
         Screen.Videos,
@@ -72,7 +75,8 @@ private fun AppBottomNavigation(
             startDestination = Screen.News.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(Screen.News.route) { NewsScreen(vm = vm) }
+            composable(Screen.News.route) { NewsScreen(vm = newsVm) }
+            composable(Screen.Profile.route) { ProfileScreen(vm = profileVm) }
         }
     }
 }

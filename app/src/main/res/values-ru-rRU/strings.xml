@@ -17,9 +17,9 @@
     <string name="hello_blank_fragment">Пустой фрагмент</string>
     <string name="field_report_description">О чем будет Ваш доклад?</string>
     <string name="report_send_btn_text">Подать заявку</string>
-    <string name="edit_name">Ваше имя</string>
-    <string name="edit_surname">Ваша фамилия</string>
-    <string name="edit_number">Телефон</string>
+    <string name="edit_first_name">Ваше имя</string>
+    <string name="edit_last_name">Ваша фамилия</string>
+    <string name="edit_phone">Телефон</string>
     <string name="edit_email">Адрес электронной почты</string>
     <string name="edit_status">Кто вы?(Студент/Ментор/Организатор)</string>
     <string name="btn_save_profile">Обновить профиль</string>
@@ -34,9 +34,4 @@
     <string name="field_surname_error">Похоже, вы забыли заполнить поле \"Ваша фамилия\"</string>
     <string name="field_email_error">Проверьте правильность введенного Email адреса</string>
     <string name="field_status_error">Пожалуйста укажите свой статус</string>
-
-    <string name="lecture_image_desc">Фото лекции</string>
-    <string name="like_image_desc">Иконка для лайков</string>
-    <string name="comment_image_desc">Иконка для комментов</string>
-    <string name="share_image_desc">Поделиться</string>
 </resources>
