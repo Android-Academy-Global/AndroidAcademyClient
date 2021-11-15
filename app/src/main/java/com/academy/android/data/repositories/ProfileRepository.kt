@@ -1,6 +1,6 @@
 package com.academy.android.data.repositories
 
-import com.academy.android.model.Profile
+import com.academy.android.domain.models.Profile
 import com.academy.android.util.SharedPreferenceHelper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

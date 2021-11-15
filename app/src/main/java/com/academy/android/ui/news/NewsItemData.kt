@@ -1,6 +1,6 @@
 package com.academy.android.ui.news
 
-import com.academy.android.model.News
+import com.academy.android.domain.models.News
 import com.academy.android.ui.base.RvItemData
 import java.util.*
 

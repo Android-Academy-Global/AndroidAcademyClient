@@ -1,6 +1,4 @@
-package com.academy.android.model
-
-import com.academy.android.ui.videos.FilterState
+package com.academy.android.domain.models
 
 data class FilterParameters(
     val cities: List<String>,

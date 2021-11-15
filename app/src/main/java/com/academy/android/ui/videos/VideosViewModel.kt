@@ -1,12 +1,16 @@
 package com.academy.android.ui.videos
 
 import androidx.lifecycle.ViewModel
-import com.academy.android.model.FilterParameters
-import com.academy.android.model.interactors.GetFilteredVideosUseCase
-import com.academy.android.model.interactors.GetFilterParametersUseCase
+import com.academy.android.domain.interactors.GetFilterParametersUseCase
+import com.academy.android.domain.interactors.GetFilteredVideosUseCase
+import com.academy.android.domain.models.FilterParameters
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel

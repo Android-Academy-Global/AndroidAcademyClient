@@ -1,4 +1,4 @@
-package com.academy.android.model
+package com.academy.android.domain.models
 
 data class Video(
     val id: Long = 0,

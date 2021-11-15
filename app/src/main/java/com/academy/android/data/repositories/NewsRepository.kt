@@ -1,6 +1,6 @@
 package com.academy.android.data.repositories
 
-import com.academy.android.model.News
+import com.academy.android.domain.models.News
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

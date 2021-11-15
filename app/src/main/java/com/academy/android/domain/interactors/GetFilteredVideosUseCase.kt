@@ -1,7 +1,7 @@
-package com.academy.android.model.interactors
+package com.academy.android.domain.interactors
 
 import com.academy.android.data.repositories.VideosRepositorySource
-import com.academy.android.model.Video
+import com.academy.android.domain.models.Video
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

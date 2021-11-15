@@ -1,7 +1,7 @@
-package com.academy.android.model.interactors
+package com.academy.android.domain.interactors
 
 import com.academy.android.data.repositories.NewsRepositorySource
-import com.academy.android.model.News
+import com.academy.android.domain.models.News
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.util.*

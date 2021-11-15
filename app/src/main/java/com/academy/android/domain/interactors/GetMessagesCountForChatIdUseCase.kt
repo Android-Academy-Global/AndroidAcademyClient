@@ -1,4 +1,4 @@
-package com.academy.android.model.interactors
+package com.academy.android.domain.interactors
 
 import com.academy.android.data.repositories.ChatsRepositorySource
 import kotlinx.coroutines.flow.Flow

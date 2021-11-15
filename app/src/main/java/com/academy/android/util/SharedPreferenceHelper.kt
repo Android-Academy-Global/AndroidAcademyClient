@@ -2,7 +2,7 @@ package com.academy.android.util
 
 import android.content.Context
 import androidx.preference.PreferenceManager
-import com.academy.android.model.Profile
+import com.academy.android.domain.models.Profile
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.json.Json
 import javax.inject.Inject

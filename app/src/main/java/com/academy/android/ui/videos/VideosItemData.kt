@@ -1,6 +1,6 @@
 package com.academy.android.ui.videos
 
-import com.academy.android.model.Video
+import com.academy.android.domain.models.Video
 import com.academy.android.ui.base.RvItemData
 
 data class VideosItemData(

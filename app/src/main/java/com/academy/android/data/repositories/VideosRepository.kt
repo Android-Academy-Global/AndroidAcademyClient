@@ -1,7 +1,7 @@
 package com.academy.android.data.repositories
 
-import com.academy.android.model.FilterParameters
-import com.academy.android.model.Video
+import com.academy.android.domain.models.FilterParameters
+import com.academy.android.domain.models.Video
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
