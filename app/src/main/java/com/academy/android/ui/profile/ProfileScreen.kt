@@ -19,7 +19,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,9 +37,19 @@ fun ProfileScreen(vm: ProfileViewModel) {
     val marginStandard = dimensionResource(id = R.dimen.spacing_16)
     val marginDouble = dimensionResource(id = R.dimen.spacing_32)
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        TopControls(marginStandard = marginStandard, marginDouble = marginDouble, vm = vm)
+        TopControls(
+            marginStandard = marginStandard,
+            marginDouble = marginDouble,
+            vm = vm,
+            isInEditMode = profileData.profileItemList.any { item -> item.isEditable }
+        )
         Avatar(profPic = profileData.profPic)
-        ProfileItemList(marginStandard = marginStandard, marginDouble = marginDouble, profileItemList = profileData.profileItemList)
+        ProfileItemList(
+            marginStandard = marginStandard,
+            marginDouble = marginDouble,
+            profileItemList = profileData.profileItemList,
+            isChangesDiscarded = profileData.isChangesDiscarded
+        )
     }
 }
 
@@ -48,7 +57,8 @@ fun ProfileScreen(vm: ProfileViewModel) {
 private fun TopControls(
     marginStandard: Dp,
     marginDouble: Dp,
-    vm: ProfileViewModel
+    vm: ProfileViewModel,
+    isInEditMode: Boolean
 ) {
     Row(
         modifier = Modifier
@@ -61,13 +71,36 @@ private fun TopControls(
             ),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_logout),
-            contentDescription = stringResource(id = R.string.logout_desc)
-        )
-        IconButton(onClick = { vm.changeProfileData(isEditable = true) }) {
+        IconButton(onClick = {
+            if (isInEditMode) {
+                vm.discardChanges()
+            }
+        }) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_edit),
+                painter = painterResource(
+                    id = if (isInEditMode) {
+                        R.drawable.ic_clear
+                    } else {
+                        R.drawable.ic_logout
+                    }
+                ),
+                contentDescription = stringResource(id = R.string.logout_desc)
+            )
+        }
+        IconButton(onClick = {
+            if (isInEditMode) {
+                vm.updateProfile()
+            }
+            vm.switchEditingMode(isEditable = !isInEditMode)
+        }) {
+            Icon(
+                painter = painterResource(
+                    id = if (isInEditMode) {
+                        R.drawable.ic_done
+                    } else {
+                        R.drawable.ic_edit
+                    }
+                ),
                 contentDescription = stringResource(id = R.string.edit_profile_desc),
             )
         }
@@ -98,7 +131,8 @@ private fun Avatar(profPic: String?) {
 private fun ProfileItemList(
     marginStandard: Dp,
     marginDouble: Dp,
-    profileItemList: List<ProfileItem>
+    profileItemList: List<ProfileItem>,
+    isChangesDiscarded: Boolean
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(marginStandard),
@@ -108,19 +142,34 @@ private fun ProfileItemList(
             ProfileDataItem(
                 value = profileItem.value,
                 hintResId = profileItem.hintResId,
-                isEditable = profileItem.isEditable
+                isEditable = profileItem.isEditable,
+                onValueChanged = profileItem.onValueChanged,
+                isChangesDiscarded = isChangesDiscarded
             )
         }
     }
 }
 
 @Composable
-fun ProfileDataItem(value: String?, hintResId: Int, isEditable: Boolean) {
-    var text by remember { mutableStateOf(value ?: "") }
+fun ProfileDataItem(
+    value: String?,
+    hintResId: Int,
+    isEditable: Boolean,
+    onValueChanged: (String) -> Unit,
+    isChangesDiscarded: Boolean
+) {
+    val text = remember { mutableStateOf(value ?: "") }
+
+    if (isChangesDiscarded) {
+        text.value = value ?: ""
+    }
 
     OutlinedTextField(
-        value = text,
-        onValueChange = { newText -> text = newText },
+        value = text.value,
+        onValueChange = { newValue ->
+            text.value = newValue
+            onValueChanged(newValue)
+        },
         label = { Text(text = stringResource(id = hintResId)) },
         readOnly = !isEditable,
         modifier = Modifier
