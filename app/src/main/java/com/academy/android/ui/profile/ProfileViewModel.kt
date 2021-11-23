@@ -21,6 +21,9 @@ class ProfileViewModel @Inject constructor(
     private val _profileData = MutableStateFlow(ProfileInfo())
     val profileData: StateFlow<ProfileInfo> = _profileData
 
+    private val _isInEditMode = MutableStateFlow(false)
+    val isInEditMode = _isInEditMode
+
     private val _profileDataDraft = MutableStateFlow(Profile.Builder())
 
     // fixme not working
@@ -29,35 +32,20 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun switchEditingMode(isEditable: Boolean) {
-        _profileData.tryEmit(
-            ProfileInfo(
-                profPic = _profileData.value.profPic,
-                profileItemList = switchItemEditMode(isEditable)
-            )
-        )
+        _isInEditMode.tryEmit(isEditable)
     }
 
     fun discardChanges() {
         _profileData.tryEmit(
             ProfileInfo(
                 profPic = _profileData.value.profPic,
-                profileItemList = switchItemEditMode(isEditable = false),
+                profileItemList = _profileData.value.profileItemList,
                 isChangesDiscarded = true
             )
         )
+        switchEditingMode(isEditable = false)
         _profileDataDraft.tryEmit(Profile.Builder())
     }
-
-    private fun switchItemEditMode(isEditable: Boolean) = _profileData.value
-        .profileItemList
-        .map { item ->
-            ProfileItem(
-                value = item.value,
-                hintResId = item.hintResId,
-                onValueChanged = item.onValueChanged,
-                isEditable = isEditable
-            )
-        }
 
     private fun buildProfileDataList(profileData: Profile) = listOf(
         ProfileItem(

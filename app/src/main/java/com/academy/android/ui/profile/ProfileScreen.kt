@@ -33,6 +33,7 @@ import com.skydoves.landscapist.glide.GlideImage
 @Composable
 fun ProfileScreen(vm: ProfileViewModel) {
     val profileData: ProfileInfo by vm.profileData.collectAsState(initial = ProfileInfo())
+    val isInEditMode: Boolean by vm.isInEditMode.collectAsState(initial = false)
 
     val marginStandard = dimensionResource(id = R.dimen.spacing_16)
     val marginDouble = dimensionResource(id = R.dimen.spacing_32)
@@ -41,13 +42,14 @@ fun ProfileScreen(vm: ProfileViewModel) {
             marginStandard = marginStandard,
             marginDouble = marginDouble,
             vm = vm,
-            isInEditMode = profileData.profileItemList.any { item -> item.isEditable }
+            isInEditMode = isInEditMode
         )
         Avatar(profPic = profileData.profPic)
         ProfileItemList(
             marginStandard = marginStandard,
             marginDouble = marginDouble,
             profileItemList = profileData.profileItemList,
+            isInEditMode = isInEditMode,
             isChangesDiscarded = profileData.isChangesDiscarded
         )
     }
@@ -132,6 +134,7 @@ private fun ProfileItemList(
     marginStandard: Dp,
     marginDouble: Dp,
     profileItemList: List<ProfileItem>,
+    isInEditMode: Boolean,
     isChangesDiscarded: Boolean
 ) {
     LazyColumn(
@@ -142,7 +145,7 @@ private fun ProfileItemList(
             ProfileDataItem(
                 value = profileItem.value,
                 hintResId = profileItem.hintResId,
-                isEditable = profileItem.isEditable,
+                isEditable = isInEditMode,
                 onValueChanged = profileItem.onValueChanged,
                 isChangesDiscarded = isChangesDiscarded
             )
