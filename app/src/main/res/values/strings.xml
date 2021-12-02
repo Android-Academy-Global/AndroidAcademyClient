@@ -34,6 +34,10 @@
     <string name="field_email_error">Check that your set correct email</string>
     <string name="field_status_error">Please, set your status</string>
 
+    <string name="filter_city">City</string>
+    <string name="filter_course_level">Level</string>
+    <string name="filter_course_year">Year</string>
+
     <!-- content descriptions -->
     <string name="lecture_image_desc" translatable="false">Lecture preview</string>
     <string name="like_image_desc" translatable="false">Clickable image</string>

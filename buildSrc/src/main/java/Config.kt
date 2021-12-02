@@ -12,7 +12,7 @@ object Config {
 object Versions {
     const val kotlin = "1.5.31"
     const val activityCompose = "1.3.1"
-    const val compose = "1.0.4"
+    const val compose = "1.0.5"
     const val vmCompose = "2.4.0-rc01"
     const val navigationCompose = "2.4.0-alpha10"
     const val hiltNavigationCompose = "1.0.0-alpha03"

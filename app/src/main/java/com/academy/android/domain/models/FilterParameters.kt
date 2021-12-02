@@ -1,7 +1,7 @@
 package com.academy.android.domain.models
 
 data class FilterParameters(
-    val cities: List<String>,
-    val levels: List<String>,
-    val years: List<String>
+    val cities: List<City>,
+    val levels: List<CourseLevel>,
+    val years: List<CourseYear>
 )

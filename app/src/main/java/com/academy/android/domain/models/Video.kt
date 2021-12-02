@@ -5,7 +5,7 @@ data class Video(
     val name: String = "",
     val date: String = "",
     val picture: String = "",
-    val city: String = "",
-    val level: String = "",
-    val year: String = ""
+    val city: City = City.UNKNOWN,
+    val level: CourseLevel = CourseLevel.UNKNOWN,
+    val year: CourseYear = CourseYear("")
 )

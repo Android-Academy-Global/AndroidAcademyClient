@@ -15,6 +15,8 @@
     <dimen name="btn_radius_24">24dp</dimen>
     <dimen name="btn_size_24">24dp</dimen>
 
+    <dimen name="border_thickness">2dp</dimen>
+
     <dimen name="btn_margin_10">10dp</dimen>
     <dimen name="dialog_btn_size">100dp</dimen>
 

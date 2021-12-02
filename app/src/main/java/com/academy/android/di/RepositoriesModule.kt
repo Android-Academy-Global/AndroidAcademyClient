@@ -7,7 +7,7 @@ import com.academy.android.data.repositories.NewsRepositorySource
 import com.academy.android.data.repositories.ProfileRepository
 import com.academy.android.data.repositories.ProfileRepositorySource
 import com.academy.android.data.repositories.VideosRepository
-import com.academy.android.data.repositories.VideosRepositorySource
+import com.academy.android.data.repositories.VideosRepositoryStub
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -32,8 +32,8 @@ internal abstract class RepositoriesModule {
     @Binds
     @Singleton
     abstract fun bindVideosRepository(
-        videosRepository: VideosRepository
-    ): VideosRepositorySource
+        videosRepository: VideosRepositoryStub
+    ): VideosRepository
 
     @Binds
     @Singleton

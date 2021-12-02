@@ -23,6 +23,8 @@ import com.academy.android.ui.news.NewsScreen
 import com.academy.android.ui.news.NewsViewModel
 import com.academy.android.ui.profile.ProfileScreen
 import com.academy.android.ui.profile.ProfileViewModel
+import com.academy.android.ui.videos.VideosScreen
+import com.academy.android.ui.videos.VideosViewModel
 
 @Composable
 fun HomeScreen() {
@@ -34,6 +36,7 @@ private fun AppBottomNavigation(
     navController: NavHostController
 ) {
     val newsVm: NewsViewModel = viewModel()
+    val videosVm: VideosViewModel = viewModel()
     val profileVm: ProfileViewModel = viewModel()
     val items = listOf(
         Screen.News,
@@ -76,6 +79,7 @@ private fun AppBottomNavigation(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.News.route) { NewsScreen(vm = newsVm) }
+            composable(Screen.Videos.route) { VideosScreen(vm = videosVm) }
             composable(Screen.Profile.route) { ProfileScreen(vm = profileVm) }
         }
     }
