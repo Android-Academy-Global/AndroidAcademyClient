@@ -6,15 +6,10 @@
     <string name="title_profile">Профиль</string>
     <string name="news__tab_title_featured">Рекомендуемые</string>
     <string name="news__tab_title_passed">Прошедшие</string>
-    <string name="level_dropdown_hint">Уровень</string>
-    <string name="year_dropdown_hint">Год</string>
-    <string name="city_dropdown_hint">Город</string>
     <string name="mentors_orgs">Организаторы/Менторы</string>
     <string name="become_speaker" translatable="false">Стать спикером</string>
-    <string name="email_title">Почта</string>
     <string name="creators">Создатели</string>
     <string name="question">Задать вопрос</string>
-    <string name="hello_blank_fragment">Пустой фрагмент</string>
     <string name="field_report_description">О чем будет Ваш доклад?</string>
     <string name="report_send_btn_text">Подать заявку</string>
     <string name="edit_first_name">Ваше имя</string>
