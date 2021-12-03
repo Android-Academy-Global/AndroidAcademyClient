@@ -1,10 +1,11 @@
-package com.academy.android.data.repositories
+package com.academy.android.data.repositories.stubs
 
 import com.academy.android.domain.models.City
 import com.academy.android.domain.models.CourseLevel
 import com.academy.android.domain.models.CourseYear
 import com.academy.android.domain.models.FilterParameters
 import com.academy.android.domain.models.Video
+import com.academy.android.domain.repositories.VideosRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject

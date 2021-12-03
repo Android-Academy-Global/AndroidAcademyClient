@@ -1,22 +1,17 @@
-package com.academy.android.data.repositories
+package com.academy.android.data.repositories.stubs
 
 import com.academy.android.domain.models.News
+import com.academy.android.domain.repositories.NewsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 import javax.inject.Inject
 
-interface NewsRepositorySource {
-    val newsList: StateFlow<List<News>>
-    fun updateLiked(id: Long, isLiked: Boolean): Boolean
-    fun getIsLikedState(id: Long): Boolean
-    fun getLikesCountForId(chatId: Long): Flow<Int>
-}
-
-class NewsRepository @Inject constructor() : NewsRepositorySource {
+class NewsRepositoryStub @Inject constructor() : NewsRepository {
     private val _newsList = MutableStateFlow(provideMokkNews())
     override val newsList: StateFlow<List<News>> = _newsList
 

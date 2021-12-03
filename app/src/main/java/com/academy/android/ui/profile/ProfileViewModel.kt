@@ -3,8 +3,8 @@ package com.academy.android.ui.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.academy.android.R
-import com.academy.android.data.repositories.ProfileRepository
 import com.academy.android.domain.models.Profile
+import com.academy.android.domain.repositories.ProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,7 +26,6 @@ class ProfileViewModel @Inject constructor(
 
     private val _profileDataDraft = MutableStateFlow(Profile.Builder())
 
-    // fixme not working
     fun updateProfile() {
         profileRepo.saveProfileData(_profileDataDraft.value.build())
     }
@@ -97,7 +96,7 @@ class ProfileViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            profileRepo.profileData.collect { profile ->
+            profileRepo.profileData.collect { profile: Profile ->
                 _profileData.value = ProfileInfo(
                     profPic = profile.profPic,
                     profileItemList = buildProfileDataList(profileData = profile)

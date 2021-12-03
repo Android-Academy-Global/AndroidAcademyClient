@@ -1,27 +1,18 @@
-package com.academy.android.data.repositories
+package com.academy.android.data.repositories.stubs
 
 import com.academy.android.domain.models.Profile
+import com.academy.android.domain.repositories.ProfileRepository
 import com.academy.android.util.SharedPreferenceHelper
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
-
-interface ProfileRepositorySource{
-
-    fun saveProfileData(
-        profile: Profile
-    )
-
-    fun getProfileData(): Profile
-}
-
-class ProfileRepository @Inject constructor(
+class ProfileRepositoryStub @Inject constructor(
     private val prefsHelper: SharedPreferenceHelper
-): ProfileRepositorySource {
+) : ProfileRepository {
 
     private val _profileData = MutableStateFlow<Profile>(getProfileData())
-    val profileData: StateFlow<Profile> = _profileData
+    override val profileData: StateFlow<Profile> = _profileData
 
     override fun saveProfileData(profile: Profile) {
         prefsHelper.saveProfData(profile)
@@ -33,6 +24,4 @@ class ProfileRepository @Inject constructor(
     override fun getProfileData(): Profile {
         return prefsHelper.getProfData()
     }
-
-
 }

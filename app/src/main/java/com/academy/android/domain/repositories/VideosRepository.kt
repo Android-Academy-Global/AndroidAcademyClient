@@ -1,4 +1,4 @@
-package com.academy.android.data.repositories
+package com.academy.android.domain.repositories
 
 import com.academy.android.domain.models.City
 import com.academy.android.domain.models.CourseLevel

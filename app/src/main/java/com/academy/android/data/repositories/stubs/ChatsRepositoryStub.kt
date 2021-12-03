@@ -1,5 +1,6 @@
-package com.academy.android.data.repositories
+package com.academy.android.data.repositories.stubs
 
+import com.academy.android.domain.repositories.ChatsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -10,14 +11,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+class ChatsRepositoryStub @Inject constructor() : ChatsRepository {
 
-interface ChatsRepositorySource {
-    fun getMessagesCountForId(chatId: Long): Flow<Int>
-}
-
-class ChatsRepository @Inject constructor(
-
-) : ChatsRepositorySource {
     init {
         generateMessagesCount()
     }
