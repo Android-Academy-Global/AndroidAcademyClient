@@ -1,11 +1,10 @@
 package com.academy.android.ui.news
 
 import com.academy.android.domain.models.News
-import com.academy.android.ui.base.RvItemData
-import java.util.*
+import java.util.Date
 
 data class NewsItemData(
-    override val id: Long = 0,
+    val id: Long = 0,
     val text: String = "",
     val link: String = "",
     val picture: String = "",
@@ -13,7 +12,7 @@ data class NewsItemData(
     val chatId: Long = 0,
     val likesCount: Int = 0,
     val commentsCount: Int = 0
-) : RvItemData
+)
 
 fun News.toNewsItemData() = NewsItemData(
     id = id,
