@@ -2,13 +2,13 @@ package com.academy.android.ui.videos
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.academy.android.domain.interactors.GetFilterParametersUseCase
-import com.academy.android.domain.interactors.GetFilteredVideosUseCase
 import com.academy.android.domain.models.City
 import com.academy.android.domain.models.CourseLevel
 import com.academy.android.domain.models.CourseYear
 import com.academy.android.domain.models.FilterParameters
 import com.academy.android.domain.models.Video
+import com.academy.android.domain.use_cases.GetFilterParametersUseCase
+import com.academy.android.domain.use_cases.GetFilteredVideosUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

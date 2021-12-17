@@ -1,4 +1,4 @@
-package com.academy.android.domain.interactors
+package com.academy.android.domain.use_cases
 
 import com.academy.android.domain.models.City
 import com.academy.android.domain.models.CourseLevel

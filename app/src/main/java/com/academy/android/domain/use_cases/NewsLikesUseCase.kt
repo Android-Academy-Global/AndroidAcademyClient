@@ -1,9 +1,9 @@
-package com.academy.android.domain.interactors
+package com.academy.android.domain.use_cases
 
 import com.academy.android.domain.repositories.NewsRepository
 import javax.inject.Inject
 
-class NewsLikesInteractor @Inject constructor(
+class NewsLikesUseCase @Inject constructor(
     private val newsRepository: NewsRepository
 ) {
     fun getIsLikedForNewsId(id: Long): Boolean =
