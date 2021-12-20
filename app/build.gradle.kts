@@ -55,6 +55,9 @@ android {
 
 dependencies {
 
+    // auth
+    implementation(Libs.playServicesAuth)
+
     // Core
     implementation("androidx.core:core-ktx:1.3.2")
 
@@ -112,7 +115,7 @@ dependencies {
     implementation("com.jakewharton.timber:timber:4.7.1")
 
     //SharedPreference
-    implementation ("androidx.preference:preference-ktx:1.1.1")
+    implementation (Libs.dataStore)
 
     // DB
     val roomVersion = "2.2.6"

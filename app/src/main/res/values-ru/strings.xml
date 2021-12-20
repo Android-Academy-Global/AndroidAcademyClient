@@ -33,4 +33,7 @@
     <string name="filter_city">Город</string>
     <string name="filter_course_level">Уровень</string>
     <string name="filter_course_year">Год</string>
+
+    <string name="option_login">Войти</string>
+    <string name="option_guest">Гостевой режим</string>
 </resources>

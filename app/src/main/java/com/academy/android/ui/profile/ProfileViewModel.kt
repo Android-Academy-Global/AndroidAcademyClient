@@ -27,7 +27,9 @@ class ProfileViewModel @Inject constructor(
     private val _profileDataDraft = MutableStateFlow(Profile.Builder())
 
     fun updateProfile() {
-        profileRepo.saveProfileData(_profileDataDraft.value.build())
+        viewModelScope.launch {
+            profileRepo.saveProfileData(_profileDataDraft.value.build())
+        }
     }
 
     fun switchEditingMode(isEditable: Boolean) {

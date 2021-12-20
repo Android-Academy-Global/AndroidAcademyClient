@@ -21,7 +21,8 @@ object Versions {
     const val androidToolsPlugin = "7.0.1"
 
     // Android libraries
-
+    const val dataStore = "1.0.0"
+    const val playServicesAuth = "20.0.0"
 
     // third party libs
     const val coilVersion = "1.3.2"
@@ -58,4 +59,7 @@ object Libs {
 
     const val coil = "io.coil-kt:coil-compose:${Versions.coilVersion}"
     const val glideComposeVersion = "com.github.skydoves:landscapist-glide:${Versions.glideComposeVersion}"
+
+    const val dataStore = "androidx.datastore:datastore-preferences:${Versions.dataStore}"
+    const val playServicesAuth = "com.google.android.gms:play-services-auth:${Versions.playServicesAuth}"
 }

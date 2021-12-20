@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.StateFlow
 interface ProfileRepository{
     val profileData: StateFlow<Profile>
 
-    fun saveProfileData(
+    suspend fun saveProfileData(
         profile: Profile
     )
 
-    fun getProfileData(): Profile
+    suspend fun getProfileData(): Profile
 }
 

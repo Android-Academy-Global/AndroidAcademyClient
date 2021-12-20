@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.academy.android.ui.AcademyTheme
-import com.academy.android.ui.HomeScreen
+import com.academy.android.ui.StartScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AcademyTheme {
-                HomeScreen()
+                StartScreen()
             }
         }
     }
