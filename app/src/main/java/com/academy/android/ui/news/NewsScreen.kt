@@ -1,6 +1,7 @@
 package com.academy.android.ui.news
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.Text
@@ -12,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.academy.android.R
+import com.academy.android.ui.Green700
 
 private const val FEATURED_TAB_INDEX = 0
 private const val PASSED_TAB_INDEX = 1
@@ -31,7 +33,11 @@ private fun NewsFeedView(newsList: List<NewsItemData>, vm: NewsViewModel) {
     )
 
     Column {
-        TabRow(selectedTabIndex = tabIndex) {
+        TabRow(
+            selectedTabIndex = tabIndex,
+            backgroundColor = MaterialTheme.colors.background,
+            contentColor = Green700
+        ) {
             tabNames.forEach { tab ->
                     Tab(
                         selected = (tabIndex == tab.key),
