@@ -20,6 +20,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.academy.android.R
 import com.academy.android.domain.models.City
 import com.academy.android.domain.models.CourseLevel
@@ -31,7 +32,7 @@ import com.academy.android.ui.custom.DropdownBox
 import com.academy.android.ui.custom.TextSearchBar
 
 @Composable
-fun VideosScreen(vm: VideosViewModel) {
+fun VideosScreen(vm: VideosViewModel = hiltViewModel()) {
     val filterParameters by vm.filterParameters.collectAsState()
     val videoList by vm.videosList.collectAsState()
 

@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.academy.android.R
 import com.academy.android.ui.Green700
 
@@ -19,7 +20,7 @@ private const val FEATURED_TAB_INDEX = 0
 private const val PASSED_TAB_INDEX = 1
 
 @Composable
-fun NewsScreen(vm: NewsViewModel) {
+fun NewsScreen(vm: NewsViewModel = hiltViewModel()) {
     val newsList: List<NewsItemData> by vm.newsList.collectAsState(initial = listOf())
     NewsFeedView(newsList = newsList, vm = vm)
 }

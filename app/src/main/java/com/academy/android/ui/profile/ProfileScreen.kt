@@ -27,11 +27,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.academy.android.R
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
-fun ProfileScreen(vm: ProfileViewModel) {
+fun ProfileScreen(vm: ProfileViewModel = hiltViewModel()) {
     val profileData: ProfileInfo by vm.profileData.collectAsState(initial = ProfileInfo())
     val isInEditMode: Boolean by vm.isInEditMode.collectAsState(initial = false)
 

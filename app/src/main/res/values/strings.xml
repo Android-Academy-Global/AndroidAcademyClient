@@ -45,4 +45,5 @@
     <string name="logout_desc" translatable="false">Log out</string>
     <string name="edit_profile_desc" translatable="false">Edit user profile info</string>
     <string name="video_preview_img_desc" translatable="false">Edit user profile info</string>
+    <string name="splash_icon_desc" translatable="false">Splash screen logo</string>
 </resources>
