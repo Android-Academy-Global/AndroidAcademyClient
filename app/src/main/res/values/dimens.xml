@@ -4,6 +4,7 @@
     <dimen name="spacing_16">16dp</dimen>
     <dimen name="spacing_24">24dp</dimen>
     <dimen name="spacing_32">32dp</dimen>
+    <dimen name="spacing_56">56dp</dimen>
 
     <dimen name="btn_radius_50">50dp</dimen>
     <dimen name="btn_radius_24">24dp</dimen>
@@ -19,5 +20,8 @@
     <dimen name="news__card_elevation">4dp</dimen>
     <dimen name="videos_item_picture_height">200dp</dimen>
     <dimen name="control_icon_size">32dp</dimen>
+
+    <dimen name="auth_options_title_size">80sp</dimen>
+    <dimen name="auth_options_subtitle_size">32sp</dimen>
 
 </resources>

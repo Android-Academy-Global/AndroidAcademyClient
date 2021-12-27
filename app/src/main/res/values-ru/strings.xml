@@ -30,6 +30,9 @@
     <string name="field_email_error">Проверьте правильность введенного Email адреса</string>
     <string name="field_status_error">Пожалуйста укажите свой статус</string>
 
+    <string name="auth_option_title">Академия</string>
+    <string name="auth_option_subtitle">андроид</string>
+
     <string name="filter_city">Город</string>
     <string name="filter_course_level">Уровень</string>
     <string name="filter_course_year">Год</string>

@@ -29,6 +29,9 @@
     <string name="field_email_error">Check that your set correct email</string>
     <string name="field_status_error">Please, set your status</string>
 
+    <string name="auth_option_title">Academy</string>
+    <string name="auth_option_subtitle">android</string>
+
     <string name="filter_city">City</string>
     <string name="filter_course_level">Level</string>
     <string name="filter_course_year">Year</string>
@@ -46,4 +49,5 @@
     <string name="edit_profile_desc" translatable="false">Edit user profile info</string>
     <string name="video_preview_img_desc" translatable="false">Edit user profile info</string>
     <string name="splash_icon_desc" translatable="false">Splash screen logo</string>
+    <string name="top_bg_desc" translatable="false">Top background curvy hat</string>
 </resources>
