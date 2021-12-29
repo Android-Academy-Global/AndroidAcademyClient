@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import com.academy.android.R
 
 val Green700 = Color(0xff27c12e)
+val TextColorSecondary = Color(0xff757575)
 val Red800 = Color(0xffc62828)
 
 private val LightColors = lightColors(

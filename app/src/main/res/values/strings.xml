@@ -39,6 +39,13 @@
     <string name="option_login">Log in</string>
     <string name="option_guest">Proceed as a guest</string>
 
+    <string name="username_hint">Username</string>
+    <string name="pwd_hint">Password</string>
+
+    <string name="forgot_pwd">Forgot your password?</string>
+    <string name="auth_or">or</string>
+    <string name="auth_mentor">Mentor</string>
+
     <!-- content descriptions -->
     <string name="lecture_image_desc" translatable="false">Lecture preview</string>
     <string name="like_image_desc" translatable="false">Clickable image</string>
