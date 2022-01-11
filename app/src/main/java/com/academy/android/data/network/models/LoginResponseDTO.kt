@@ -1,18 +1,12 @@
 package com.academy.android.data.network.models
 
-import com.academy.android.domain.models.User
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class LoginResponseDTO(
-    val userProfile: UserDTO,
+    @SerialName("user_profile")
+    val userProfile: UserProfileDTO,
+    @SerialName("token")
     val token: String
 )
-
-fun LoginResponseDTO.toUser(): User =
-    User(
-        username = userProfile.username,
-        name = userProfile.name,
-        isMentor = userProfile.mentor,
-        token = token
-    )

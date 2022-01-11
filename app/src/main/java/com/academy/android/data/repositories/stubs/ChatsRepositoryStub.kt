@@ -13,11 +13,11 @@ import javax.inject.Inject
 
 class ChatsRepositoryStub @Inject constructor() : ChatsRepository {
 
+    private val messagesCountState = MutableStateFlow<Map<Long, Int>>(emptyMap())
+
     init {
         generateMessagesCount()
     }
-
-    private val messagesCountState = MutableStateFlow<Map<Long, Int>>(emptyMap())
 
     override fun getMessagesCountForId(chatId: Long): Flow<Int> =
         messagesCountState.filter { it.containsKey(chatId) }.map { it[chatId] ?: 0 }

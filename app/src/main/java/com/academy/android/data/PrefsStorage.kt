@@ -5,14 +5,16 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.academy.android.domain.models.Profile
+import com.academy.android.domain.OperationResult
+import com.academy.android.domain.models.UserProfile
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class PrefsStorage @Inject constructor(
     @ApplicationContext private val appContext: Context
 ) {
@@ -30,24 +32,26 @@ class PrefsStorage @Inject constructor(
                 prefs[key] ?: default
             }
 
-    suspend fun saveProfData(profile: Profile) {
-        val serializedProfile = Json.encodeToString(Profile.serializer(), profile)
+    suspend fun saveProfile(profile: UserProfile) {
+        val serializedProfile = Json.encodeToString(UserProfile.serializer(), profile)
         appContext.dataStore.edit { prefs ->
             prefs[PROFILE_KEY] = serializedProfile
         }
     }
 
-    suspend fun getProfData(): Profile {
-        val profData = appContext.dataStore.data
+    fun loadProfile(): Flow<OperationResult<UserProfile, Throwable?>> =
+        appContext.dataStore
+            .data
             .map { prefs ->
-                prefs[PROFILE_KEY]
-            }.first()
-        return if (profData != null){
-            Json.decodeFromString(Profile.serializer(), profData)
-        } else {
-            Profile()
-        }
-    }
+                val profile = prefs[PROFILE_KEY]
+                OperationResult.Success(
+                    data = if (profile != null) {
+                        Json.decodeFromString(UserProfile.serializer(), profile)
+                    } else {
+                        UserProfile.UNKNOWN
+                    }
+                )
+            }
 
     companion object {
         private val PROFILE_KEY = stringPreferencesKey("user_profile")

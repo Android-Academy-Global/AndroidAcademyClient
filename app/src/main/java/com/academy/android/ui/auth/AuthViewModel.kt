@@ -2,7 +2,8 @@ package com.academy.android.ui.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.academy.android.domain.models.AuthState
+import com.academy.android.domain.OperationResult
+import com.academy.android.domain.models.UserProfile
 import com.academy.android.domain.use_cases.UserProfileUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -13,16 +14,18 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val userProfileUseCase: UserProfileUseCase
 ) : ViewModel() {
-    val authState: Flow<AuthState>
-        get() = userProfileUseCase.authState
+    val userProfile: Flow<OperationResult<UserProfile, Throwable?>> =
+        userProfileUseCase.userProfile
 
-    fun onGuestModeClick() {
+    fun onLogInClick(username: String, password: String) {
         viewModelScope.launch {
-            changeAuthState(AuthState.GUEST)
+            userProfileUseCase.login(username = username, password = password)
         }
     }
 
-    private suspend fun changeAuthState(newAuthState: AuthState) {
-        userProfileUseCase.changeAuthState(newAuthState)
+    fun onGuestModeClick() {
+        viewModelScope.launch {
+            userProfileUseCase.enterGuestMode()
+        }
     }
 }

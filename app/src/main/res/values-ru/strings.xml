@@ -44,4 +44,6 @@
     <string name="option_guest">Гостевой режим</string>
     <string name="auth_or">или</string>
     <string name="auth_mentor">Ментор</string>
+
+    <string name="profile_loading_error">Ой-ой, у нас проблемы! Наши инженеры уже "выехали", попробуйте еще разок чуть позднее, плиз :)</string>
 </resources>

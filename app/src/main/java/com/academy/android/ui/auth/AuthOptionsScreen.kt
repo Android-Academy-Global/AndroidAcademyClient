@@ -1,6 +1,5 @@
 package com.academy.android.ui.auth
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -46,13 +45,13 @@ fun AuthOptionsScreen(vm: AuthViewModel) {
         modifier = Modifier
             .fillMaxSize()
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.top_background),
-            contentDescription = stringResource(id = R.string.top_bg_desc),
-            modifier = Modifier
-                .fillMaxWidth(),
-            alignment = Alignment.TopCenter
-        )
+//        Image(
+//            painter = painterResource(id = R.drawable.top_background),
+//            contentDescription = stringResource(id = R.string.top_bg_desc),
+//            modifier = Modifier
+//                .fillMaxWidth(),
+//            alignment = Alignment.TopCenter
+//        )
         Text(
             text = stringResource(id = R.string.auth_option_subtitle),
             fontSize = dimensionResource(id = R.dimen.auth_options_subtitle_size).value.sp,
@@ -157,8 +156,8 @@ fun AuthOptionsScreen(vm: AuthViewModel) {
             )
             OutlinedButton(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(MinHeight),
+                    .height(MinHeight)
+                    .fillMaxWidth(),
                 onClick = { vm.onGuestModeClick() }
             ) {
                 Text(text = stringResource(id = R.string.option_guest))

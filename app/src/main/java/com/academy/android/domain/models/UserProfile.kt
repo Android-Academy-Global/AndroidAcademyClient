@@ -3,13 +3,13 @@ package com.academy.android.domain.models
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Profile(
+data class UserProfile(
     var profPic: String? = null,
     var firstName: String? = null,
     var lastName: String? = null,
     var phoneNumber: String? = null,
     var email: String? = null,
-    var status: String? = null
+    var title: UserTitle? = null
 ) {
     class Builder(
         private var profPic: String? = null,
@@ -17,7 +17,7 @@ data class Profile(
         private var lastName: String? = null,
         private var phoneNumber: String? = null,
         private var email: String? = null,
-        private var status: String? = null
+        private var title: UserTitle? = null
     ) {
         fun withFirstName(value: String): Builder =
             this.apply {
@@ -44,19 +44,24 @@ data class Profile(
                 email = value
             }
 
-        fun withStatus(value: String): Builder =
+        fun withTitle(value: UserTitle): Builder =
             this.apply {
-                status = value
+                title = value
             }
 
-        fun build(): Profile =
-            Profile(
+        fun build(): UserProfile =
+            UserProfile(
                 profPic = profPic,
                 firstName = firstName,
                 lastName = lastName,
                 phoneNumber = phoneNumber,
                 email = email,
-                status = status
+                title = title
             )
+    }
+
+    companion object {
+        val GUEST = UserProfile(title = UserTitle.GUEST)
+        val UNKNOWN = UserProfile(title = UserTitle.UNKNOWN)
     }
 }

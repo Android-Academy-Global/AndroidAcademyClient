@@ -46,6 +46,8 @@
     <string name="auth_or">or</string>
     <string name="auth_mentor">Mentor</string>
 
+    <string name="profile_loading_error">Oops! Houston, we have a problem! We are already working on this. Please, try again a little bit later.</string>
+
     <!-- content descriptions -->
     <string name="lecture_image_desc" translatable="false">Lecture preview</string>
     <string name="like_image_desc" translatable="false">Clickable image</string>
