@@ -38,15 +38,17 @@
 
     <string name="option_login">Log in</string>
     <string name="option_guest">Proceed as a guest</string>
+    <string name="option_register">Register</string>
 
     <string name="username_hint">Username</string>
     <string name="pwd_hint">Password</string>
 
     <string name="forgot_pwd">Forgot your password?</string>
-    <string name="auth_or">or</string>
+    <string name="auth_or">- or -</string>
     <string name="auth_mentor">Mentor</string>
 
     <string name="profile_loading_error">Oops! Houston, we have a problem! We are already working on this. Please, try again a little bit later.</string>
+    <string name="error_wrong_credentials">Wrong username or password</string>
 
     <!-- content descriptions -->
     <string name="lecture_image_desc" translatable="false">Lecture preview</string>

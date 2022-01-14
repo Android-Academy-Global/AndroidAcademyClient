@@ -19,6 +19,8 @@ import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults.MinHeight
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -35,10 +37,14 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.sp
 import com.academy.android.R
+import com.academy.android.domain.models.AuthState
+import com.academy.android.ui.Red800
 import com.academy.android.ui.TextColorSecondary
 
 @Composable
 fun AuthOptionsScreen(vm: AuthViewModel) {
+    val authState by vm.authState.collectAsState()
+
     val paddingStandard = dimensionResource(id = R.dimen.spacing_16)
     val paddingSmall = dimensionResource(id = R.dimen.spacing_8)
     Column(
@@ -71,6 +77,9 @@ fun AuthOptionsScreen(vm: AuthViewModel) {
 
             // fixme: windowSoftInputMode=adjustResize not working
             val focusManger = LocalFocusManager.current
+            // todo: add register option
+            // todo: add google sign up
+            val isError = (authState == AuthState.UNAUTHORIZED)
             OutlinedTextField(
                 value = username.value,
                 onValueChange = { newValue -> username.value = newValue },
@@ -82,7 +91,8 @@ fun AuthOptionsScreen(vm: AuthViewModel) {
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 keyboardActions = KeyboardActions(
                     onNext = { focusManger.moveFocus(FocusDirection.Down) }
-                )
+                ),
+                isError = isError
             )
             val passwordVisibility = remember { mutableStateOf(false) }
             OutlinedTextField(
@@ -113,8 +123,16 @@ fun AuthOptionsScreen(vm: AuthViewModel) {
                             modifier = Modifier.size(dimensionResource(id = R.dimen.eye_icon_size))
                         )
                     }
-                }
+                },
+                isError = isError
             )
+            if (isError) {
+                Text(
+                    text = stringResource(id = R.string.error_wrong_credentials),
+                    color = Red800,
+                    modifier = Modifier.padding(start = paddingSmall, bottom = paddingSmall)
+                )
+            }
             Row(
                 modifier = Modifier
                     .padding(bottom = paddingSmall),
@@ -143,7 +161,7 @@ fun AuthOptionsScreen(vm: AuthViewModel) {
                     .fillMaxWidth()
                     .height(MinHeight)
                     .padding(bottom = paddingSmall),
-                onClick = { /*TODO*/ }
+                onClick = { vm.onLogInClick(username = username.value, password = pwd.value) }
             ) {
                 Text(text = stringResource(id = R.string.option_login))
             }
@@ -154,6 +172,15 @@ fun AuthOptionsScreen(vm: AuthViewModel) {
                     .padding(bottom = paddingSmall)
                     .align(Alignment.CenterHorizontally)
             )
+            OutlinedButton(
+                modifier = Modifier
+                    .height(MinHeight)
+                    .fillMaxWidth()
+                    .padding(bottom = paddingSmall),
+                onClick = { vm.onGuestModeClick() }
+            ) {
+                Text(text = stringResource(id = R.string.option_register))
+            }
             OutlinedButton(
                 modifier = Modifier
                     .height(MinHeight)

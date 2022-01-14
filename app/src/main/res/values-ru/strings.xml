@@ -42,8 +42,10 @@
     <string name="forgot_pwd">Забыли пароль?</string>
     <string name="option_login">Войти</string>
     <string name="option_guest">Гостевой режим</string>
-    <string name="auth_or">или</string>
+    <string name="option_register">Регистрация</string>
+    <string name="auth_or">- или -</string>
     <string name="auth_mentor">Ментор</string>
 
     <string name="profile_loading_error">Ой-ой, у нас проблемы! Наши инженеры уже "выехали", попробуйте еще разок чуть позднее, плиз :)</string>
+    <string name="error_wrong_credentials">Неправильный логин или пароль</string>
 </resources>
