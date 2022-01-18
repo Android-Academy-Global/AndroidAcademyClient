@@ -1,6 +1,7 @@
 package com.academy.android.di
 
-import com.academy.android.data.repositories.*
+import com.academy.android.data.repositories.AuthRepositoryImpl
+import com.academy.android.domain.repositories.AuthRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -9,28 +10,10 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-abstract class RepositoriesModule {
+internal interface RepositoriesModule {
     @Binds
     @Singleton
-    abstract fun bindChatsRepository(
-        chatsRepository: ChatsRepository
-    ): ChatsRepositorySource
-
-    @Binds
-    @Singleton
-    abstract fun bindNewsRepository(
-        newsRepository: NewsRepository
-    ): NewsRepositorySource
-
-    @Binds
-    @Singleton
-    abstract fun bindVideosRepository(
-        videosRepository: VideosRepository
-    ): VideosRepositorySource
-
-    @Binds
-    @Singleton
-    abstract fun bindProfileRepository(
-        profileRepository: ProfileRepository
-    ): ProfileRepositorySource
+    fun bindAuhRepository(
+        authRepository: AuthRepositoryImpl
+    ): AuthRepository
 }

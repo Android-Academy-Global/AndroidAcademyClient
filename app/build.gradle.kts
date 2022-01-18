@@ -1,20 +1,25 @@
+import Config.androidBuildTools
+import Config.androidCompileSdk
+import Config.androidMinSdk
+import Config.androidTargetSdk
+
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("plugin.serialization")
-    kotlin("kapt")
-    id("dagger.hilt.android.plugin")
-    id("androidx.navigation.safeargs.kotlin")
+    id(Plugins.appPlugin)
+    kotlin(Plugins.androidPlugin)
+    kotlin(Plugins.serializationPlugin)
+    kotlin(Plugins.kapt)
+    id(Plugins.hiltPlugin)
+    id(Plugins.navigationSafeArgsPlugin)
 }
 
 android {
-    compileSdkVersion(30)
-    buildToolsVersion = "30.0.3"
+    compileSdk = androidCompileSdk
+    buildToolsVersion = androidBuildTools
 
     defaultConfig {
         applicationId = "com.academy.android"
-        minSdkVersion(21)
-        targetSdkVersion(30)
+        minSdk = androidMinSdk
+        targetSdk = androidTargetSdk
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
@@ -35,15 +40,23 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    composeOptions {
+        kotlinCompilerVersion = Versions.kotlin
+        kotlinCompilerExtensionVersion = Versions.compose
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 }
 
 dependencies {
+
+    // auth
+    implementation(Libs.playServicesAuth)
 
     // Core
     implementation("androidx.core:core-ktx:1.3.2")
@@ -62,6 +75,7 @@ dependencies {
 
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:${rootProject.extra["navigationVersion"]}")
@@ -73,16 +87,21 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion")
 
+    // Network
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+
     // DI
-    val daggerVersion = "2.33"
-    implementation("com.google.dagger:dagger:$daggerVersion")
-    kapt("com.google.dagger:dagger-compiler:$daggerVersion")
-    implementation("com.google.dagger:hilt-android:${rootProject.extra["hiltVersion"]}")
-    kapt("com.google.dagger:hilt-compiler:${rootProject.extra["hiltVersion"]}")
+    implementation(Libs.dagger)
+    kapt(Libs.daggerCompiler)
+
+    implementation(Libs.hilt)
+    kapt(Libs.hiltCompiler)
+    implementation(Libs.hiltNavigationCompose)
     val androidxHilt = "1.0.0-alpha03"
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:$androidxHilt")
-    kapt("androidx.hilt:hilt-compiler:$androidxHilt")
-    implementation("androidx.hilt:hilt-work:$androidxHilt")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("androidx.hilt:hilt-work:1.0.0")
 
     // Concurrency
     val coroutinesVersion = "1.4.3"
@@ -96,7 +115,7 @@ dependencies {
     implementation("com.jakewharton.timber:timber:4.7.1")
 
     //SharedPreference
-    implementation ("androidx.preference:preference-ktx:1.1.1")
+    implementation (Libs.dataStore)
 
     // DB
     val roomVersion = "2.2.6"
@@ -112,6 +131,17 @@ dependencies {
 
     // ViewBindingPropertyDelegate
     implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.4")
+
+    // compose
+    implementation(Libs.activityCompose)
+    implementation(Libs.vmCompose)
+    implementation(Libs.composeCompiler)
+    implementation(Libs.composeFoundation)
+    implementation(Libs.composeMaterial)
+    implementation(Libs.composeUI)
+    implementation(Libs.composeTooling)
+    implementation(Libs.coil)
+    implementation(Libs.glideComposeVersion)
 
     // Testing
     testImplementation("junit:junit:4.13.2")

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Academy</string>
+    <string name="title_videos">Видео</string>
+    <string name="title_news">Новости</string>
+    <string name="title_profile">Профиль</string>
+    <string name="news__tab_title_featured">Рекомендуемые</string>
+    <string name="news__tab_title_passed">Прошедшие</string>
+    <string name="mentors_orgs">Организаторы/Менторы</string>
+    <string name="become_speaker" translatable="false">Стать спикером</string>
+    <string name="creators">Создатели</string>
+    <string name="question">Задать вопрос</string>
+    <string name="field_report_description">О чем будет Ваш доклад?</string>
+    <string name="report_send_btn_text">Подать заявку</string>
+    <string name="edit_first_name">Ваше имя</string>
+    <string name="edit_last_name">Ваша фамилия</string>
+    <string name="edit_phone">Телефон</string>
+    <string name="edit_email">Адрес электронной почты</string>
+    <string name="edit_status">Кто вы?(Студент/Ментор/Организатор)</string>
+    <string name="btn_save_profile">Обновить профиль</string>
+    <string name="become_speaker_label">Become speaker</string>
+    <string name="pick_dialog_camera">Камера</string>
+    <string name="dialog_pick_gallery">Галлерея</string>
+    <string name="field_report_title">Описание доклада</string>
+    <string name="report_hint">Заголовок</string>
+    <string name="form_report_title">Название доклада</string>
+    <string name="edit_profile_label">Редактировать профиль</string>
+    <string name="field_name_error">Похоже, вы забыли заполнить поле \"Ваше имя\"</string>
+    <string name="field_surname_error">Похоже, вы забыли заполнить поле \"Ваша фамилия\"</string>
+    <string name="field_email_error">Проверьте правильность введенного Email адреса</string>
+    <string name="field_status_error">Пожалуйста укажите свой статус</string>
+
+    <string name="auth_option_title">Академия</string>
+    <string name="auth_option_subtitle">андроид</string>
+
+    <string name="filter_city">Город</string>
+    <string name="filter_course_level">Уровень</string>
+    <string name="filter_course_year">Год</string>
+
+    <string name="username_hint">Имя пользователя</string>
+    <string name="pwd_hint">Пароль</string>
+    <string name="forgot_pwd">Забыли пароль?</string>
+    <string name="option_login">Войти</string>
+    <string name="option_guest">Гостевой режим</string>
+    <string name="option_register">Регистрация</string>
+    <string name="auth_or">- или -</string>
+    <string name="auth_mentor">Ментор</string>
+
+    <string name="profile_loading_error">Ой-ой, у нас проблемы! Наши инженеры уже "выехали", попробуйте еще разок чуть позднее, плиз :)</string>
+    <string name="error_wrong_credentials">Неправильный логин или пароль</string>
+</resources>

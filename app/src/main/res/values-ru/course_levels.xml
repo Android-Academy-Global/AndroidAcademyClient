@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="course_fundamentals" type="string">Основы</item>
+    <item name="course_advanced" type="string">Продвинутый</item>
+</resources>

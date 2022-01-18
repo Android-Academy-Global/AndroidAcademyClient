@@ -1,7 +1,11 @@
 package com.academy.android.ui.news
 
 import androidx.lifecycle.ViewModel
-import com.academy.android.model.interactors.*
+import com.academy.android.domain.use_cases.GetFeaturedNewsUseCase
+import com.academy.android.domain.use_cases.GetLikesCountForChatIdUseCase
+import com.academy.android.domain.use_cases.GetMessagesCountForChatIdUseCase
+import com.academy.android.domain.use_cases.GetPassedNewsUseCase
+import com.academy.android.domain.use_cases.NewsLikesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +20,7 @@ class NewsViewModel @Inject constructor(
     getPassedNewsUseCase: GetPassedNewsUseCase,
     private val getMessagesCountForChatIdUseCase: GetMessagesCountForChatIdUseCase,
     private val getLikesCountForChatIdUseCase: GetLikesCountForChatIdUseCase,
-    private val newsLikesInteractor: NewsLikesInteractor,
+    private val newsLikesUseCase: NewsLikesUseCase,
 ) : ViewModel() {
 
     private val filterState = MutableStateFlow(true)
@@ -27,15 +31,18 @@ class NewsViewModel @Inject constructor(
             getPassedNewsUseCase().flowOn(Dispatchers.IO),
             filterState
         ) { featuredNews, passedNews, filterState ->
-            if (filterState) featuredNews.map { it.toNewsItemData() }
-            else passedNews.map { it.toNewsItemData() }
+            if (filterState) {
+                featuredNews.map { it.toNewsItemData() }
+            } else {
+                passedNews.map { it.toNewsItemData() }
+            }
         }
 
     fun getIsLiked(id: Long): Boolean =
-        newsLikesInteractor.getIsLikedForNewsId(id)
+        newsLikesUseCase.getIsLikedForNewsId(id)
 
     fun handleLike(id: Long, isLiked: Boolean): Boolean =
-        newsLikesInteractor.updateLikedForNewsId(id, isLiked)
+        newsLikesUseCase.updateLikedForNewsId(id, isLiked)
 
     fun getChatMessagesCount(id: Long): Flow<Int> =
         getMessagesCountForChatIdUseCase(id).flowOn(Dispatchers.IO)

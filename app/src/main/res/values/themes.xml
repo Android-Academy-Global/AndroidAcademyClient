@@ -1,40 +1,19 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.AndroidAcademy" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryVariant">@color/green</item>
         <item name="colorOnPrimary">@color/black</item>
+        <item name="android:colorBackground">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/light_green</item>
         <item name="colorSecondaryVariant">@color/dark_green</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
-        <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/grey</item>
+        <item name="android:navigationBarColor">@color/grey</item>
         <!-- Customize your theme here. -->
-    </style>
-
-    <style name="Body" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:textStyle">normal</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="H3" parent="TextAppearance.AppCompat.Display3">
-        <item name="android:textStyle">normal</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="TabTextHeaders">
-        <item name="tabTextAppearance">@style/H3</item>
-        <item name="tabTextColor">?attr/colorOnPrimary</item>
-    </style>
-
-    <style name="ShapeAppearance.CircularBorder" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
     </style>
 
 </resources>

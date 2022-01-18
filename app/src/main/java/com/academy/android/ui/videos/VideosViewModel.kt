@@ -1,12 +1,19 @@
 package com.academy.android.ui.videos
 
 import androidx.lifecycle.ViewModel
-import com.academy.android.model.FilterParameters
-import com.academy.android.model.interactors.GetFilteredVideosUseCase
-import com.academy.android.model.interactors.GetFilterParametersUseCase
+import androidx.lifecycle.viewModelScope
+import com.academy.android.domain.models.City
+import com.academy.android.domain.models.CourseLevel
+import com.academy.android.domain.models.CourseYear
+import com.academy.android.domain.models.FilterParameters
+import com.academy.android.domain.models.Video
+import com.academy.android.domain.use_cases.GetFilterParametersUseCase
+import com.academy.android.domain.use_cases.GetFilteredVideosUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,39 +22,50 @@ class VideosViewModel @Inject constructor(
     getFilterParametersUseCase: GetFilterParametersUseCase
 ) : ViewModel() {
 
-    val filterParameters = getFilterParametersUseCase()
-    val initialFilterState: FilterState = filterParameters.toFilterState(0, 0, 1)
-    private val filterStateFlow = MutableStateFlow(initialFilterState)
+    private val _videosList = MutableStateFlow<List<VideosItemData>>(emptyList())
+    val videosList: StateFlow<List<VideosItemData>> = _videosList
 
-    fun handleCityFilterUpdated(city: String) {
-        filterStateFlow.value = filterStateFlow.value.copy(city = city)
-    }
+    private val _filterParameters = MutableStateFlow(FilterParameters(cities = emptyList(), levels = emptyList(), years = emptyList()))
+    val filterParameters = _filterParameters
 
-    fun handleLevelFilterUpdated(level: String) {
-        filterStateFlow.value = filterStateFlow.value.copy(level = level)
-    }
+    private val _filterState = MutableStateFlow(FilterState())
+    val filterState: StateFlow<FilterState> = _filterState
 
-    fun handleYearFilterUpdated(year: String) {
-        filterStateFlow.value = filterStateFlow.value.copy(year = year)
-    }
-
-
-    val videosList: Flow<List<VideosItemData>> =
-        filterStateFlow
-            .flatMapLatest { filterState ->
-                getFilteredVideosUseCase(filterState.city, filterState.level, filterState.year)
-                    .flowOn(Dispatchers.IO)
-                    .map { listOfVideos ->
-                        listOfVideos.map { it.toVideosItemData() }
-                    }
+    init {
+        viewModelScope.launch {
+            _filterParameters.emit(getFilterParametersUseCase.getFilterParameters())
+        }
+        viewModelScope.launch {
+            _filterState.collect { filter ->
+                _videosList.emit(
+                    getFilteredVideosUseCase.getVideos(
+                        city = filter.city,
+                        level = filter.level,
+                        year = filter.year
+                    ).map(Video::toVideosItemData)
+                )
             }
+        }
+    }
+
+    fun handleCityFilterUpdated(city: City?) {
+        _filterState.value = _filterState.value.copy(city = city)
+    }
+
+    fun handleLevelFilterUpdated(level: CourseLevel?) {
+        _filterState.value = _filterState.value.copy(level = level)
+    }
+
+    fun handleYearFilterUpdated(year: CourseYear?) {
+        _filterState.value = _filterState.value.copy(year = year)
+    }
 }
 
 
 data class FilterState(
-    val city: String,
-    val level: String,
-    val year: String,
+    val city: City? = null,
+    val level: CourseLevel? = null,
+    val year: CourseYear? = null,
 )
 
 private fun FilterParameters.toFilterState(cityInd: Int, levelInd: Int, yearInd: Int) = FilterState(
