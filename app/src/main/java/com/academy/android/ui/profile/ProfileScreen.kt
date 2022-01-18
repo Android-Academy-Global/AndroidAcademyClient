@@ -22,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -74,9 +75,11 @@ private fun TopControls(
             ),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
+        val focusManger = LocalFocusManager.current
         IconButton(onClick = {
             if (isInEditMode) {
                 vm.discardChanges()
+                focusManger.clearFocus()
             }
         }) {
             Icon(
@@ -95,6 +98,7 @@ private fun TopControls(
                 vm.updateProfile()
             }
             vm.switchEditingMode(isEditable = !isInEditMode)
+            focusManger.clearFocus()
         }) {
             Icon(
                 painter = painterResource(
