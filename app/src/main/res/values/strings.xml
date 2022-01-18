@@ -5,23 +5,18 @@
     <string name="title_profile">Profile</string>
     <string name="news__tab_title_featured">Featured</string>
     <string name="news__tab_title_passed">Passed</string>
-    <string name="level_dropdown_hint">Level</string>
-    <string name="year_dropdown_hint">Year</string>
-    <string name="city_dropdown_hint">City</string>
-    <string name="email_title">Email</string>
     <string name="become_speaker">Become speaker</string>
     <string name="creators">Creators</string>
     <string name="question">Ask question</string>
     <string name="mentors_orgs">Organizers/Mentors</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="form_report_title">Report title</string>
     <string name="report_hint">Title</string>
     <string name="field_report_title">Report description</string>
     <string name="field_report_description">What is your report about?</string>
     <string name="report_send_btn_text">Submit an application</string>
-    <string name="edit_name">Your name</string>
-    <string name="edit_surname">Your surname</string>
-    <string name="edit_number">Phone number</string>
+    <string name="edit_first_name">First name</string>
+    <string name="edit_last_name">Last name</string>
+    <string name="edit_phone">Phone number</string>
     <string name="edit_email">Email</string>
     <string name="edit_status">You are…(Student, Mentor, Organizer)</string>
     <string name="btn_save_profile">Update profile</string>
@@ -33,4 +28,37 @@
     <string name="field_surname_error">Seems like you forgot to set your surname</string>
     <string name="field_email_error">Check that your set correct email</string>
     <string name="field_status_error">Please, set your status</string>
+
+    <string name="auth_option_title">Academy</string>
+    <string name="auth_option_subtitle">android</string>
+
+    <string name="filter_city">City</string>
+    <string name="filter_course_level">Level</string>
+    <string name="filter_course_year">Year</string>
+
+    <string name="option_login">Log in</string>
+    <string name="option_guest">Proceed as a guest</string>
+    <string name="option_register">Register</string>
+
+    <string name="username_hint">Username</string>
+    <string name="pwd_hint">Password</string>
+
+    <string name="forgot_pwd">Forgot your password?</string>
+    <string name="auth_or">- or -</string>
+    <string name="auth_mentor">Mentor</string>
+
+    <string name="profile_loading_error">Oops! Houston, we have a problem! We are already working on this. Please, try again a little bit later.</string>
+    <string name="error_wrong_credentials">Wrong username or password</string>
+
+    <!-- content descriptions -->
+    <string name="lecture_image_desc" translatable="false">Lecture preview</string>
+    <string name="like_image_desc" translatable="false">Clickable image</string>
+    <string name="comment_image_desc" translatable="false">Clickable image</string>
+    <string name="share_image_desc" translatable="false">Clickable image</string>
+    <string name="user_profile_pic_desc" translatable="false">User profile picture</string>
+    <string name="logout_desc" translatable="false">Log out</string>
+    <string name="edit_profile_desc" translatable="false">Edit user profile info</string>
+    <string name="video_preview_img_desc" translatable="false">Edit user profile info</string>
+    <string name="splash_icon_desc" translatable="false">Splash screen logo</string>
+    <string name="top_bg_desc" translatable="false">Top background curvy hat</string>
 </resources>

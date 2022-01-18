@@ -1,5 +1,6 @@
 package com.academy.android.di
 
+import com.academy.android.data.network.ServerApi
 import com.academy.android.data.network.TokenAuthenticator
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -49,4 +50,9 @@ internal class NetworkModule {
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideApi(retrofit: Retrofit): ServerApi =
+        retrofit.create(ServerApi::class.java)
 }

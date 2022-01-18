@@ -1,31 +1,26 @@
 buildscript {
-  val kotlinVersion by extra("1.4.31")
-  val hiltVersion by extra("2.33-beta")
-  val navigationVersion by extra("2.3.4")
-    val kotlin_version by extra("1.4.31")
+    val navigationVersion by extra("2.3.4")
     repositories {
-    mavenCentral()
-    google()
-    jcenter()
-  }
-  dependencies {
-    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-    classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
-    classpath("com.android.tools.build:gradle:4.1.3")
-    classpath ("com.google.dagger:hilt-android-gradle-plugin:${hiltVersion}")
-    classpath ("androidx.navigation:navigation-safe-args-gradle-plugin:${navigationVersion}")
-
-  }
+        google()
+        mavenCentral()
+        maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev/")
+    }
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")
+        classpath("com.android.tools.build:gradle:${Versions.androidToolsPlugin}")
+        classpath ("com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerVersion}")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${navigationVersion}")
+    }
 }
 
 allprojects {
-  repositories {
-    mavenCentral()
-    google()
-    jcenter()
-  }
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
 
 task<Delete>("clean") {
-  delete(rootProject.buildDir)
+    delete(rootProject.buildDir)
 }

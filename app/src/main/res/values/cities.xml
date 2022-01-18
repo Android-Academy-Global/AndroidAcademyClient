@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="city_moscow" type="string">Moscow</item>
+    <item name="city_minsk" type="string">Minsk</item>
+    <item name="city_tel_aviv" type="string">Tel Aviv</item>
+</resources>

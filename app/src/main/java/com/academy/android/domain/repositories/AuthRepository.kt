@@ -1,27 +1,21 @@
 package com.academy.android.domain.repositories
 
-import androidx.lifecycle.LiveData
 import com.academy.android.domain.OperationResult
-import com.academy.android.domain.models.User
+import com.academy.android.domain.models.UserProfile
+import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
-    fun loadUser(): User?
+    val userProfile: Flow<OperationResult<UserProfile, Throwable?>>
 
-    suspend fun login(username: String, password: String): OperationResult<Unit, String?>
+    suspend fun login(username: String, password: String): OperationResult<Unit, Throwable?>
 
     suspend fun register(
         username: String,
         password: String,
         name: String,
         isMentor: Boolean
-    ): OperationResult<Unit, String?>
+    ): OperationResult<Unit, Throwable?>
 
-    fun observeUser(): LiveData<MyOptional<User>>
-
-    fun logOut()
+    suspend fun enterGuestMode()
 
 }
-
-data class MyOptional<T : Any>(
-    val value: T?
-)
